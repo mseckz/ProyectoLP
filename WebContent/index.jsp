@@ -5,6 +5,7 @@
 <c:import url="header.jsp" />
 <!--FIN MENU -->
 <!--CONTENEDOR-->
+<!--PRUEBA SI FUNKO-->
 <div class="container">
       <div class="padded">
         <div class="row">
