@@ -4,6 +4,7 @@ public class JuegoDTO {
 	
 	private String codigojuego;
 	private String nombre;
+	private String descripcion;
 	private double costo;
 	private String tipo;
 	private String categoria;
@@ -11,12 +12,13 @@ public class JuegoDTO {
 	private String estado;
 	private String fechaingreso;
 	
-	public JuegoDTO(String codigojuego, String nombre, double costo,
+	public JuegoDTO(String codigojuego, String nombre, String descripcion,double costo,
 			String tipo, String categoria, String codigoadministrador,
 			String estado, String fechaingreso) {
 		super();
 		this.codigojuego = codigojuego;
 		this.nombre = nombre;
+		this.descripcion = descripcion;
 		this.costo = costo;
 		this.tipo = tipo;
 		this.categoria = categoria;
@@ -37,6 +39,13 @@ public class JuegoDTO {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
 	public double getCosto() {
 		return costo;
 	}
