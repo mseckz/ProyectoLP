@@ -1,6 +1,7 @@
 package beans;
 
 public class JuegoDTO {
+	
 	private String codigojuego;
 	private String nombre;
 	private double costo;
@@ -9,6 +10,7 @@ public class JuegoDTO {
 	private String codigoadministrador;
 	private String estado;
 	private String fechaingreso;
+	
 	public JuegoDTO(String codigojuego, String nombre, double costo,
 			String tipo, String categoria, String codigoadministrador,
 			String estado, String fechaingreso) {
@@ -22,6 +24,7 @@ public class JuegoDTO {
 		this.estado = estado;
 		this.fechaingreso = fechaingreso;
 	}
+	
 	public String getCodigojuego() {
 		return codigojuego;
 	}

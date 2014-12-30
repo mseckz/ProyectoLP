@@ -17,7 +17,7 @@
     	<ul role="menubar">
             <li><a href="index.jsp"><i class="icon-home"></i> SASUKI</a></li>
             <li role="menu">
-            	<button  onclick = "location='games.jsp'">BUSCAR JUEGOS</button>
+            	<button  onclick = "location='ListadoJuegos'">BUSCAR JUEGOS</button>
                 <ul>
                 	<li role="menu">
                   		<button title="Navigation, buttons, boxes, message boxes, tables, tabs, and forms" onclick = "location='listado.html'">Los más vendidos</button></a>
@@ -59,6 +59,13 @@
                 	<li><a href="./responsive-text.html" title="Responsive text and multi-line text block truncation">Socios Estrategicos</a></li>
                 	<li><a href="./placeholder-text.html" title="Placeholder text and placeholder fonts for rapid prototyping and wireframes">Eventos</a></li>
               	</ul>
+            </li>
+            <li class="pull-right"><a>Cerrar Sesion</a></li>
+            <li role="menu" class="pull-right">
+            	<button>Carrito<i class="icon-shopping-cart"></i></button>
+            	<ul>
+            		
+            	</ul>
             </li>
        		<input id="search-box" name="q" onblur="if (this.value == &quot;&quot;) this.value = &quot;Buscar...&quot;;" onfocus="if (this.value == &quot;Buscar...&quot;) this.value = &quot;&quot;;" size="5" type="text" value="Buscar...">
         </ul>
