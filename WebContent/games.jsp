@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
-    
 <!DOCTYPE html><!--[if lt IE 7]><html class="no-js ie ie6 lt-ie7 lt-ie8 lt-ie9 lt-ie10"><![endif]-->
 <!--[if IE 7]>   <html class="no-js ie ie7 lt-ie8 lt-ie9 lt-ie10"><![endif]-->
 <!--[if IE 8]>   <html class="no-js ie ie8 lt-ie9 lt-ie10"><![endif]-->
@@ -9,7 +7,6 @@
 <!--[if gt IE 9]><html class="no-js ie ie10"><![endif]-->
 <!--[if !IE]><!-->
 <html class="no-js"><!--<![endif]-->
-<c:import url="head.jsp" />
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -70,9 +67,75 @@
 
 }).call(this);
 </script>
-</head>
-<body>
-<c:import url="header.jsp" />
+  </head>
+  <body>
+<header class="padded">
+      <div class="container">
+        <div class="row">
+          <div class="one half">
+            <h2 class="logo"><a href="/" target="_parent"><img src="images/groundwork-logo.png" alt=""><strong>SASUKI</strong></a></h2>
+          </div>
+          <div class="one half">
+
+            <p class="small double-pad-top no-pad-small-tablet align-right align-left-small-tablet">
+<a href="#" class="gap-right" >Registrarse<i class="icon-user"></i></a>
+            </p>
+          </div>
+        </div>
+        <nav role="navigation" class="nav gap-top">
+          <ul role="menubar">
+            <li><a href="index.jsp"><i class="icon-home"></i> SASUKI</a></li>
+            <li role="menu">
+              <button  onclick = "location='games.jsp'">BUSCAR JUEGOS</button>
+              <ul>
+                <li role="menu">
+                  <button title="Navigation, buttons, boxes, message boxes, tables, tabs, and forms" onclick = "location='games.jsp'">Los más vendidos</button></a>
+                  <ul>
+                    <li><a href="./navigation.html" title="Navigation">STARCRAFT II</a></li>
+                    <li><a href="./buttons.html" title="Buttons, button groups, button menus">BATLEFIELD IV</a></li>
+                    <li><a href="./boxes.html" title="Boxes">METAL GEAR SOLID : RISING</a></li>
+                    <li><a href="./messages.html" title="Message boxes">WASTELAND</a></li>
+                    <li><a href="./tables.html" title="Tables">FINAL FANTASY XIV</a></li>
+                    <li><a href="./tabs.html" title="Tabs">GOD OF WAR : ASCENTION</a></li>
+                    <li><a href="./forms.html" title="Form elements">WORLD OF WARCRAFT : PANDARIAN</a></li>
+                  </ul>
+                </li>
+        <li role="menu">
+                  <button title="Navigation, buttons, boxes, message boxes, tables, tabs, and forms">Todos los juegos</button>
+                  <ul>
+                    <li><a href="./navigation.html" title="Navigation"><strong>Por Género</strong></a></li>
+                    <li><a href="./buttons.html" title="Buttons, button groups, button menus">MMO</a></li>
+                    <li><a href="./boxes.html" title="Boxes">RPG</a></li>
+                    <li><a href="./messages.html" title="Message boxes">MMORPG</a></li>
+                    <li><a href="./tables.html" title="Tables">SHOOTERS</a></li>
+                    <li><a href="./tabs.html" title="Tabs">MMORPS</a></li>
+                    <li><a href="./forms.html" title="Form elements">DANCING</a></li>
+                  </ul>
+                </li>
+                <li><a href="./icons.html" title="Icons">Ultimos Lanzamientos</a></li>
+                <li><a href="./responsive-text.html" title="Responsive text and multi-line text block truncation">Proximos Lanzamientos</a></li>
+                <li><a href="./placeholder-text.html" title="Placeholder text and placeholder fonts for rapid prototyping and wireframes">Los mas Recomendados</a></li>
+                <li><a href="./animations.html" title="Pure CSS3 Animations">Lo mas Rankeado</a></li>
+              </ul>
+            </li>
+      <li role="menu">
+                <button>Sobre Nosotros</button>
+              <ul>
+                <li><a href="./grid.html" title="Responsive grid system, grid adapters and helpers">Historia</a></li>
+                <li><a href="./helpers.html" title="Layout helpers, spinners and much more">Mision</a></li>
+                <li><a href="./typography.html" title="Text elements, quotes, code and web fonts">Vision</a></li>
+                <li><a href="./icons.html" title="Icons">Unetenos</a></li>
+                <li><a href="./responsive-text.html" title="Responsive text and multi-line text block truncation">Socios Estrategicos</a></li>
+                <li><a href="./placeholder-text.html" title="Placeholder text and placeholder fonts for rapid prototyping and wireframes">Eventos</a></li>
+              </ul>
+            </li>
+            <li><a href="register.jsp"><i class=""></i> Registrarse</a></li>
+       <input id="search-box" name="q" onblur="if (this.value == &quot;&quot;) this.value = &quot;Buscar...&quot;;" onfocus="if (this.value == &quot;Buscar...&quot;) this.value = &quot;&quot;;" size="5" type="text" value="Buscar...">
+          </ul>
+     
+        </nav>
+      </div>
+    </header>
     <div class="container">
       <div class="padded">
         <div class="row">
@@ -101,22 +164,90 @@
         </aside>
         <article class="four fifths">
           <div class="row">
-          <c:forEach var="juego" items="${juegos}" >
-          	<div class="one fourth three-up-small-tablet two-up-mobile padded bounceInDown animated">
+            <div class="one fourth three-up-small-tablet two-up-mobile padded bounceInDown animated">
               <div class="box">
-                <h4 data-compression="7" data-max="20" class="responsive align-center zero"><c:out value="${juego.nombre}" ></c:out></h4><img src="images/bsellers/AssassinsCreedUnity.jpg">
+                <h4 data-compression="7" data-max="20" class="responsive align-center zero">Product 1</h4><img src="images/bsellers/AssassinsCreedUnity.jpg">
                 <p class="truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <p>$<c:out value="${juego.costo}"></c:out> USD</p>
-                <form>
-                	<input type="hidden" name="codigo" value="<c:out value='${juego.codigojuego}'></c:out>">
-                	<input type="hidden" name="costo" value="<c:out value='${juego.costo}'></c:out>">
-                	<button type="submit" class="btn btn-primary">
-  						<i class="icon-shopping-cart pull-right large"></i>
-					</button>
-                </form>
+                <p>$8.00 USD<i class="icon-shopping-cart pull-right large"></i></p>
               </div>
             </div>
-          </c:forEach>
+            <div class="one fourth three-up-small-tablet two-up-mobile padded bounceInUp animated">
+              <div class="box">
+                <h4 data-compression="7" data-max="20" class="responsive align-center zero">Product 2</h4><img src="images/bsellers/BoundByFlame.jpg">
+                <p class="truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>$8.00 USD<i class="icon-shopping-cart pull-right large"></i></p>
+              </div>
+            </div>
+            <div class="one fourth three-up-small-tablet two-up-mobile padded rotateInDownRight animated">
+              <div class="box">
+                <h4 data-compression="7" data-max="20" class="responsive align-center zero">Product 3</h4><img src="images/bsellers/CrysisTrilogy.jpg">
+                <p class="truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>$8.00 USD<i class="icon-shopping-cart pull-right large"></i></p>
+              </div>
+            </div>
+            <div class="one fourth three-up-small-tablet two-up-mobile padded bounceInRight animated">
+              <div class="box">
+                <h4 data-compression="7" data-max="20" class="responsive align-center zero">Product 4</h4><img src="images/bsellers/FarCray4.jpg">
+                <p class="truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>$8.00 USD<i class="icon-shopping-cart pull-right large"></i></p>
+              </div>
+            </div>
+            <div class="one fourth three-up-small-tablet two-up-mobile padded bounceInDown animated">
+              <div class="box">
+                <h4 data-compression="7" data-max="20" class="responsive align-center zero">Product 5</h4><img src="images/bsellers/battlefield4.jpg">
+                <p class="truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>$8.00 USD<i class="icon-shopping-cart pull-right large"></i></p>
+              </div>
+            </div>
+            <div class="one fourth three-up-small-tablet two-up-mobile padded bounceInUp animated">
+              <div class="box">
+                <h4 data-compression="7" data-max="20" class="responsive align-center zero">Product 6</h4><img src="images/bsellers/dragonage.jpg">
+                <p class="truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>$8.00 USD<i class="icon-shopping-cart pull-right large"></i></p>
+              </div>
+            </div>
+            <div class="one fourth three-up-small-tablet two-up-mobile padded rotateInDownRight animated">
+              <div class="box">
+                <h4 data-compression="7" data-max="20" class="responsive align-center zero">Product 7</h4><img src="images/bsellers/plantsvsZombies.jpg">
+                <p class="truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>$8.00 USD<i class="icon-shopping-cart pull-right large"></i></p>
+              </div>
+            </div>
+            <div class="one fourth three-up-small-tablet two-up-mobile padded bounceInRight animated">
+              <div class="box">
+                <h4 data-compression="7" data-max="20" class="responsive align-center zero">Product 8</h4><img src="images/bsellers/MetalGearRising.jpg">
+                <p class="truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>$8.00 USD<i class="icon-shopping-cart pull-right large"></i></p>
+              </div>
+            </div>
+            <div class="one fourth three-up-small-tablet two-up-mobile padded bounceInDown animated">
+              <div class="box">
+                <h4 data-compression="7" data-max="20" class="responsive align-center zero">Product 9</h4><img src="images/bsellers/NeedForSpeed.jpg">
+                <p class="truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>$8.00 USD<i class="icon-shopping-cart pull-right large"></i></p>
+              </div>
+            </div>
+            <div class="one fourth three-up-small-tablet two-up-mobile padded bounceInUp animated">
+              <div class="box">
+                <h4 data-compression="7" data-max="20" class="responsive align-center zero">Product 10</h4><img src="images/bsellers/MetalGearRising.jpg">
+                <p class="truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>$8.00 USD<i class="icon-shopping-cart pull-right large"></i></p>
+              </div>
+            </div>
+            <div class="one fourth three-up-small-tablet two-up-mobile padded rotateInDownRight animated">
+              <div class="box">
+                <h4 data-compression="7" data-max="20" class="responsive align-center zero">Product 11</h4><img src="images/bsellers/watchDogs.jpg">
+                <p class="truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>$8.00 USD<i class="icon-shopping-cart pull-right large"></i></p>
+              </div>
+            </div>
+            <div class="one fourth three-up-small-tablet two-up-mobile padded bounceInRight animated">
+              <div class="box">
+                <h4 data-compression="7" data-max="20" class="responsive align-center zero">Product 12</h4><img src="http://placehold.it/300x300/f1c40f/ffffff/&amp;text=Product+12">
+                <p class="truncate">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>$8.00 USD<i class="icon-shopping-cart pull-right large"></i></p>
+              </div>
+            </div>
           </div>
         </article>
       </div>
