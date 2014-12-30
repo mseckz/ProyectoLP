@@ -9,7 +9,7 @@
         </div>
         <div class="one half">
 			<p class="small double-pad-top no-pad-small-tablet align-right align-left-small-tablet">
-			<a href="micuenta.html" class="gap-right" >Registrarse<i class="icon-user"></i></a>
+			<a href="register.jsp" class="gap-right" >Registrarse<i class="icon-user"></i></a>
             </p>
         </div>
     </div>
