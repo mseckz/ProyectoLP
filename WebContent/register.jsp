@@ -6,8 +6,10 @@
 <html>
 <c:import url="head.jsp" />
 <body>
-<c:import url="header.jsp" />
-
+<header>
+	<c:import url="header.jsp" />
+	<c:import url="menuNormal.jsp" />
+</header>
 <div class="container">
     <div class="padded">
         <div class="row">

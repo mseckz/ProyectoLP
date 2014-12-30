@@ -72,7 +72,10 @@
 </script>
 </head>
 <body>
-<c:import url="header.jsp" />
+<header class="padded">
+	<c:import url="header.jsp" />
+	<c:import url="menuNormal.jsp" />
+</header>
     <div class="container">
       <div class="padded">
         <div class="row">
