@@ -1,12 +1,15 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <c:import url="head.jsp" />
 <body>
 <c:import url="header.jsp" />
+<c:import url="menuNormal.jsp" />
 <div class="container">
 	<div class="padded">
         <div class="row">
