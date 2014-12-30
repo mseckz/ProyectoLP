@@ -33,7 +33,7 @@ public class AgregarJuegoCarrito extends HttpServlet {
 		String codigoJuego = request.getParameter("codigo");
 		String codigoCarrito = "CA100000";
 		int cantidad = 1;
-		double costo = 
+//		double costo = 
 		
 		
 		
