@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="container">
 	<nav role="navigation" class="nav gap-top">
     	<ul role="menubar">
-            <li><a href="index.jsp"><i class="icon-home"></i> SASUKI</a></li>
+            <li><a href="index.jsp"><i class="icon-home"></i> SASUKI</a></li>	
             <li role="menu">
             	<button  onclick = "location='ListadoJuegos'">BUSCAR JUEGOS</button>
                 <ul>
@@ -55,7 +56,10 @@
             <li role="menu" class="pull-right">
             	<button>Carrito<i class="icon-shopping-cart"></i></button>
             	<ul>
-            		
+            		<c:forEach var="det" items="${listaCarrito}">
+                  		<li><c:out value="${det.codigoJuego}"></c:out></li>
+                  	</c:forEach>
+            		<li><a href="ListarDetalleCarrito">Ir a carrito</a></li>
             	</ul>
             </li>
        		<input id="search-box" name="q" onblur="if (this.value == &quot;&quot;) this.value = &quot;Buscar...&quot;;" onfocus="if (this.value == &quot;Buscar...&quot;) this.value = &quot;&quot;;" size="5" type="text" value="Buscar...">

@@ -6,14 +6,14 @@ public class JuegoDTO {
 	private String nombre;
 	private String descripcion;
 	private double costo;
-	private String tipo;
-	private String categoria;
+	private int tipo;
+	private int categoria;
 	private String codigoadministrador;
 	private String estado;
 	private String fechaingreso;
 	
 	public JuegoDTO(String codigojuego, String nombre, String descripcion,double costo,
-			String tipo, String categoria, String codigoadministrador,
+			int tipo, int categoria, String codigoadministrador,
 			String estado, String fechaingreso) {
 		super();
 		this.codigojuego = codigojuego;
@@ -52,16 +52,16 @@ public class JuegoDTO {
 	public void setCosto(double costo) {
 		this.costo = costo;
 	}
-	public String getTipo() {
+	public int getTipo() {
 		return tipo;
 	}
-	public void setTipo(String tipo) {
+	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
-	public String getCategoria() {
+	public int getCategoria() {
 		return categoria;
 	}
-	public void setCategoria(String categoria) {
+	public void setCategoria(int categoria) {
 		this.categoria = categoria;
 	}
 	public String getCodigoadministrador() {

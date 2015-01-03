@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Estructura del archivo librería.tld -->
+<taglib>
+<tlibversion>1.0</tlibversion>
+<jspversion>1.0</jspversion>
+<shortname>Ejemplos de Custom Tags</shortname>
+<!-- definicion de las etiquetas -->
+<tag>
+	<name>comboJuegos</name>
+	<tagclass>etiquetas.comboJuegos</tagclass>
+	<bodycontent>empty</bodycontent>
+	<info>Muestra un combo</info>
+	<attribute>
+		<name>nombre</name>
+		<required>false</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+</tag>
+<tag>
+	<name>comboTipoJuego</name>
+	<tagclass>etiquetas.comboTipoJuego</tagclass>
+	<bodycontent>empty</bodycontent>
+	<info>Muestra un combo</info>
+	<attribute>
+		<name>nombre</name>
+		<required>false</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+</tag>
+<tag>
+	<name>comboCategoriaJuego</name>
+	<tagclass>etiquetas.comboCategoriaJuego</tagclass>
+	<bodycontent>empty</bodycontent>
+	<info>Muestra un combo</info>
+	<attribute>
+		<name>nombre</name>
+		<required>false</required>
+		<rtexprvalue>false</rtexprvalue>
+	</attribute>
+</tag>
+</taglib>

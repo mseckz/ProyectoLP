@@ -4,7 +4,7 @@
 <div class="container">
 	<div class="row">
 	    <div class="one half">
-	        <h2 class="logo"><a href="/" target="_parent"><img src="images/groundwork-logo.png" alt=""><strong>SASUKI</strong></a></h2>
+	        <h2 class="logo"><a href="index.jsp" target="_parent"><img src="images/groundwork-logo.png" alt=""><strong>SASUKI</strong></a></h2>
 	    </div>
 	    <div class="one half">
 			<p class="small double-pad-top no-pad-small-tablet align-right align-left-small-tablet">

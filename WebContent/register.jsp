@@ -19,80 +19,44 @@
         <div class="row bounceInRight animated">
         	<div class="one whole padded">
           		<h4>Formulario de Registro</h4>
-          		<form action="#" method="post">
+          		<form action="registrandoUsuario" method="post">
             	<fieldset>
               		<legend></legend>
               		<div class="row">
               			<div class="one half padded">
                   			<label for="name">Nombre *</label>
-                  			<input id="name" type="text" placeholder="Nombres" required>
+                  			<input name="txtNombre" type="text" placeholder="Nombres" value="${param.txtNombre}" required>
+                  			<span>${error}</span>
                 		</div>
               			<div class="one half padded">
                  	 		<label for="name">Usuario o ID *</label>
-                 			<input id="name" type="text" placeholder="ID" required>
+                 			<input name="txtUsuario" type="text" placeholder="ID" value="${param.txtUsuario}" required>
                 		</div> 
                			<div class="one half padded">
-                  			<label for="name">Apellidos *</label>
-                  			<input id="name" type="text" placeholder="Apellidos" required>
+                  			<label for="name">Apellido Paterno*</label>
+                  			<input name="txtApellidoPaterno" type="text" placeholder="Apellido Pat" value="${param.txtApellidoPaterno}" required>
                 		</div>
                 		<div class="one half padded">
                   			<label for="name">Password *</label>
-                  			<input id="name" type="password" placeholder="Password" required>
+                  			<input name="txtPassword" type="password" placeholder="Password" required>
+                		</div>
+                		<div class="one half padded">
+                  			<label for="name">Apellido Materno*</label>
+                  			<input name="txtApellidoMaterno" type="text" placeholder="Apellido Mat" value="${param.txtApellidoMaterno}"required>
+                		</div>
+                		<div class="one half padded">
+                  			<label for="name">Confirmar Password *</label>
+                  			<input name="txtPasswordConfirmar" type="password" placeholder="Password" required>
                 		</div>
                 		<div class="one half padded">
                   			<label for="email">Email *</label>
-                  			<input id="email" type="email" placeholder="you@example.com" required>
-                		</div> 
-              			<div class="one half padded">
-                  			<label for="name">Confirmar Password *</label>
-                  			<input id="name" type="password" placeholder="Password" required>
-                		</div>                   
+                  			<input name="txtEmail" type="email" placeholder="you@example.com" value="${param.txtEmail}" required>
+                		</div>                    
                 		<div class="one half padded">
                   			<label for="name">Fecha de Nacimiento *</label>
-                  			<input id="name" type="date" value="" placeholder="Fecha de Nacimiento" required>
+                  			<input name="txtFechaNac" type="date" value="${param.txtFechaNac}" required>
                 		</div>
               	    </div>
-              		<div class="row">
-                		<div class="one half padded">
-                  			<label for="address">Direccion *</label>
-                  			<input id="address" type="text" placeholder="Direccion">
-                		</div>
-              		</div>
-              		<div class="row">
-                		<div class="one half padded"><span class="select-wrap">
-                    	<select>
-                      		<option value="" disabled="" selected="">Distrito</option>
-                      		<option value="">Cercado de Lima</option>
-                      		<option value="">Ate</option>
-                      		<option value="">Barranco</option>
-                      		<option value="">Breña</option>
-                      		<option value="">Comas</option>
-                      		<option value="">Chorrillos</option>
-                      		<option value="">El Agustino</option>
-                      		<option value="">Jesús María</option>
-                      		<option value="">La Molina</option>
-                      		<option value="">La Victoria</option>
-                      		<option value="">Lince</option>
-                      		<option value="">Magdalena del Mar</option>
-                      		<option value="">Miraflores</option>
-                      		<option value="">Pueblo Libre</option>
-                      		<option value="">Puente Piedra</option>
-                      		<option value="">Rimac</option>
-                      		<option value="">San Isidro</option>
-                      		<option value="">Independencia</option>
-                      		<option value="">San Juan de Miraflores</option>
-                      		<option value="">San Luis</option>
-                      		<option value="">San Martin de Porres</option>
-                      		<option value="">San Miguel</option>
-                      		<option value="">Santiago de Surco</option>
-                      		<option value="">Surquillo</option>
-                      		<option value="">Villa María del Triunfo</option>
-                      		<option value="">San Juan de Lurigancho</option>
-                      		<option value="">Santa Borja</option>
-                      		<option value="">Santa Anita</option>
-                      		<option value="">Villa El Salvador</option>
-                    	</select></span></div>
-              	</div>
               	<div class="row">
                 	<div class="one whole padded">
                   		<label for="message">Revisa los acuerdos que verás a continuación y confirma que los aceptas marcando las casillas de verificación del final de la página. Debes aceptar las condiciones de estos acuerdos para continuar.</label>
@@ -400,12 +364,10 @@
                 Usted acepta cumplir todas las leyes y normativas de importación y exportación aplicables. Usted acepta no exportar el software ni permitir el uso de su cuenta por parte de individuos de cualquier país partidario del terrorismo para los que la oficina de administración de exportaciones de EE. UU. haya decretado una restricción de las exportaciones cifradas en el momento de la exportación. Usted declara y garantiza que no se encuentra en ninguno de esos países prohibidos y que no está bajo su control ni es ciudadano o residente en ellos.
                                   
            		</div>
-
-                <input type="checkbox" name="" value="Estoy de Acuerdo" required>     He leido y Acepto las condiciones mencionadas
+                <label><input type="checkbox" name="chkCondiciones" value="agree" required>He leido y Acepto las condiciones mencionadas</label>
             </div>
-			<input type="submit" name="" value="Enviar">
+			<input type="submit" value="Enviar">
         </div>
-        <div class="row">
         </div>
         </fieldset>
        	</form>
@@ -415,7 +377,6 @@
 </div><br>
 <hr>
 </div>
-</div>
-	<c:import url="footer.jsp" />    
+<c:import url="footer.jsp" />   
 </body>
 </html>

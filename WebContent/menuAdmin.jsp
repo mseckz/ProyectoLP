@@ -9,9 +9,9 @@
             <li role="menu">
             	<button  title = "Mantenimientos">Mantenimientos</button>
                 <ul>
-	                <li><a href="admin_MantenimientoJuegos.jsp" title="Navigation">Juegos</a></li>
-	                <li><a href="admin_MantenimientoLicencias.jsp" title="Buttons, button groups, button menus">Licencias</a></li>
-	                <li><a href="admin_MantenimientoUsuarios.jsp" title="Boxes">Usuarios</a></li>
+	                <li><a href="ListarJuegosMant" title="Navigation">Juegos</a></li>
+	                <li><a href="ListarLicenciasTabla" title="Buttons, button groups, button menus">Licencias</a></li>
+	                <li><a href="ListarUsuariosTabla" title="Boxes">Usuarios</a></li>
           		</ul>
             </li>
             <li role="menu">

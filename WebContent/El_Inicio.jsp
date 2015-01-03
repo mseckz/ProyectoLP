@@ -17,8 +17,6 @@
                     <input type="button"value="ADMINISTRADOR"onclick = "location='admin_main.jsp'"> 
                   	<input type="button"value="CLIENTES" onclick = "location='index.jsp'"> 
                 </div>        
-          		<div class="row">
-                </div>
         	</div>
       	</div><br>
     <hr>

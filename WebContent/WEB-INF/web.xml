@@ -9,4 +9,28 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <servlet-name>buscaModUsuarios</servlet-name>
+    <servlet-class>servlets.BuscarModificarUsuarios</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>buscaModUsuarios</servlet-name>
+    <url-pattern>/buscaModUsuarios</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AgregarJuegoCarrito</servlet-name>
+    <servlet-class>servlets.AgregarJuegoCarrito</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AgregarJuegoCarrito</servlet-name>
+    <url-pattern>/agregarJuegoCarrito</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>RegistroUsuario</servlet-name>
+    <servlet-class>servlets.RegistroUsuario</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegistroUsuario</servlet-name>
+    <url-pattern>/registrandoUsuario</url-pattern>
+  </servlet-mapping>
 </web-app>
