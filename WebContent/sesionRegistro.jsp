@@ -16,22 +16,29 @@
     <hr>
 <article class="row bounceInUp animated">
 	<section class="one half padded bounceInLeft border-right">
+	<form method="post" action="logueando">
     	<h3>Iniciar Sesion</h3>
         <div class="row">
             <div class="two-up-small-tablet one-up-mobile">
               	<p class="padded no-pad-mobile">En una cuenta de Sasuki existente:</p>
               	<div class="one">
-                  			<label for="name">Nombre de una cuenta existente</label>
-                  			<input id="nombre" type="text" placeholder="Nombre de la cuenta" required>
+                  			<label for="name">Codigo o Correo de una cuenta existente</label>
+                  			<input id="nombre" type="text" placeholder="Nombre o Correo anexado a la cuenta" name="txtNombre"required>
                 </div>
                 <div class="one">
                   			<label for="name">Password</label>
-                  			<input id="password" type="password" placeholder="Password" required>
+                  			<input id="password" type="password" placeholder="Password" name="txtPassword" required>
                 </div>
                 </br>
-                <input type="submit" name="" value="Iniciar Sesion">		
+                <input type="submit" name="" value="Iniciar Sesion">
+                <%
+					String mensaje = (String) request.getAttribute("mensaje");
+					if (mensaje != null)
+						out.println("<center>" + mensaje + "</center>");
+				%>		
             </div>
         </div>
+        </form>
     </section>
     <section class="one half padded bounceInRight">
     	<h3>Crear nueva cuenta</h3>

@@ -77,18 +77,22 @@ public class BuscarModificarJuego extends HttpServlet {
 					
 			rd.forward(request, response);
 		} else if ("Agregar".equals(accion)) {
-		    // Invoke SecondServlet's job here.
+		    
 			System.out.println("Agregar");
 			
 				JuegoService servicio = new JuegoService();
 				int rs = servicio.AgregarJuego(nombreJuego, descripcionJuego, precioJuego, tipoJuego, categoriaJuego, codigoAdministrador, estadoJuego);
 
 				request.setAttribute("error", "Algo no esta bien");
+				
+				ArrayList<JuegoDTO> lista = servicio.listarJuegos();
+				request.getSession().setAttribute("listado", lista);
+				
 				request.getRequestDispatcher("/adminMantenimientoJuegos.jsp").forward(request, response);
 
 
 		}else if ("Modificar".equals(accion)) {
-		    // Invoke SecondServlet's job here.
+		    
 			System.out.println("Modificar");
 			
 			
@@ -96,16 +100,12 @@ public class BuscarModificarJuego extends HttpServlet {
 			int rs = servicio.ModificarJuego(codigojuego, nombreJuego, descripcionJuego, precioJuego, tipoJuego, categoriaJuego, codigoAdministrador, estadoJuego);
 			
 			JuegoService servicios = new JuegoService();
-			ArrayList<JuegoDTO> listado = servicios.listarJuegos();
+			ArrayList<JuegoDTO> lista = servicio.listarJuegos();
+			request.getSession().setAttribute("listado", lista);
 
 			RequestDispatcher rd = request.getRequestDispatcher("/adminMantenimientoJuegos.jsp");
-			HttpSession misesion = request.getSession();
-			misesion.setAttribute("mensaje", listado);
 				
 			rd.forward(request, response);
-
 		}
-		
-		
 	}
 }

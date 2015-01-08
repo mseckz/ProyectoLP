@@ -15,4 +15,6 @@ public interface UsuarioDAO {
 	public int modificaUsuario(String codigo, String status);
 	
 	public UsuarioDTO loginUsuario(String usuario, String clave);
+
+	public UsuarioDTO validaUsuario(String nombre, String password);
 }

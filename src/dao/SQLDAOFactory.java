@@ -1,5 +1,6 @@
 package dao;
 
+import interfaces.AdministradorDAO;
 import interfaces.CarritoDAO;
 import interfaces.CategoriaDAO;
 import interfaces.DetalleCarritoDAO;
@@ -43,6 +44,11 @@ public class SQLDAOFactory extends DAOFactory {
 	@Override
 	public SerialDAO getSerialDAO() {
 		return new SQLSerialDAO();
+	}
+
+	@Override
+	public AdministradorDAO getAdministradorDAO() {
+		return new SQLAdministradorDAO();
 	}
 
 }

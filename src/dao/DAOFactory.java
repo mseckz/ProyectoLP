@@ -1,5 +1,6 @@
 package dao;
 
+import interfaces.AdministradorDAO;
 import interfaces.CarritoDAO;
 import interfaces.CategoriaDAO;
 import interfaces.DetalleCarritoDAO;
@@ -19,6 +20,7 @@ public abstract class DAOFactory {
 	public abstract CategoriaDAO getCategoriaDAO();
 	public abstract TipoDAO getTipoDAO();
 	public abstract SerialDAO getSerialDAO();
+	public abstract AdministradorDAO getAdministradorDAO();
 	
 	public static DAOFactory getDAOFactory(int qFactory) {
 		switch (qFactory) {

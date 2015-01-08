@@ -8,7 +8,42 @@
 	    </div>
 	    <div class="one half">
 			<p class="small double-pad-top no-pad-small-tablet align-right align-left-small-tablet">
-				<a href="sesionRegistro.jsp" class="gap-right" >Iniciar Sesion<i class="icon-user"></i></a>
+							<%
+								HttpSession misesion= request.getSession();
+								String mensaje = (String) misesion.getAttribute("datosconsesion");
+								System.out.println("mensaje datosconsesion JSP:"+mensaje);
+								String mensajeUser = (String) misesion.getAttribute("datosUser");
+								String mensajeAdmin = (String) misesion.getAttribute("datosAdmin");
+								String mensajeFinal="";
+								String mensaje1="";
+								String ruta="";
+								if(mensajeUser=="usuario" && mensaje!=null){
+									System.out.println(""+mensajeUser);
+									mensajeFinal="Bienvenido "+mensaje;
+									System.out.println("mensajeFinal:"+mensajeFinal);
+									mensaje1="Cerrar Sesion";
+									ruta="user_Cuenta.jsp";
+									}
+								if(mensajeAdmin=="administrador" && mensaje!=null){
+									System.out.println(""+mensajeAdmin);
+									mensajeFinal="Bienvenido "+mensaje;
+									System.out.println("mensajeFinal:"+mensajeFinal);
+									mensaje1="Cerrar Sesion";
+									ruta="admin_main.jsp";
+									}
+								 if(mensaje==null){
+								/* if(mensajeAdmin==null && mensaje==null && mensajeUser==null){ */
+										mensajeFinal="Iniciar Sesion";
+										mensaje1="";
+										ruta="sesionRegistro.jsp";
+										
+									}
+								
+								
+							%>
+							
+				<a href="<%=ruta %>" class="gap-right" ><%=mensajeFinal%><i class="icon-user"></i></a>
+				<a href="CerrarSesion" class="gap-right" ><%=mensaje1%></a>
 			</p>
 	    </div>
 	</div>

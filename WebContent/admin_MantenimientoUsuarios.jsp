@@ -70,15 +70,10 @@
 					<div class="one whole padded">
 						<display:table name="${sessionScope.mensaje}" pagesize="10"
 							export="true" decorator="decorator.Wrapper">
-							<display:column title="Codigo de Usuario"
-								property="codigoUsuario" sortable="true" />
-							<display:column title="Usuario"
-								property="usuario" sortable="true" />
+							<display:column title="Codigo de Usuario" property="codigoUsuario" sortable="true" />
 							<display:column title="Nombre" property="nombre" sortable="true" />
-							<display:column title="Apellido Paterno"
-								property="apellidoPaterno" sortable="true" />
-							<display:column title="Apellido Materno"
-								property="apellidoMaterno" sortable="true" />
+							<display:column title="Apellido Paterno" property="apellidoPaterno" sortable="true" />
+							<display:column title="Apellido Materno" property="apellidoMaterno" sortable="true" />
 							<display:column title="Estado" property="estado" sortable="true" />
 							<display:column title="Seleccionar" property="recurso" />
 						</display:table>

@@ -33,4 +33,12 @@
     <servlet-name>RegistroUsuario</servlet-name>
     <url-pattern>/registrandoUsuario</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>logueoUsuario</servlet-name>
+    <servlet-class>servlets.LoguearUsuario</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>logueoUsuario</servlet-name>
+    <url-pattern>/logueando</url-pattern>
+  </servlet-mapping>
 </web-app>
