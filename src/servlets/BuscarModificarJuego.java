@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import service.JuegoService;
 import service.UsuarioService;
+import beans.AdministradorDTO;
 import beans.JuegoDTO;
 import beans.UsuarioDTO;
 
@@ -28,14 +29,13 @@ public class BuscarModificarJuego extends HttpServlet {
      */
     public BuscarModificarJuego() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		procesarServlet(request,response);
 	}
 
@@ -43,69 +43,88 @@ public class BuscarModificarJuego extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		procesarServlet(request,response);
 	}
 
 	private void procesarServlet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		AdministradorDTO admin = (AdministradorDTO) request.getSession().getAttribute("admindto");
 		
 		String accion = request.getParameter("action");
-		String codigojuego=request.getParameter("txtCodigoJuego");
-		String nombreJuego=request.getParameter("txtNombreJuego");
-		String descripcionJuego=request.getParameter("txtDescripcionJuego");
-		double precioJuego=Double.parseDouble(request.getParameter("txtPrecioJuego"));
-		String codigoAdministrador="AD100000";
-		int categoriaJuego=Integer.parseInt(request.getParameter("cboCategoria"));
-		int tipoJuego=Integer.parseInt(request.getParameter("cboTipo"));	
-		String estadoJuego=request.getParameter("cboEstadoJuegos");	
 		
-		
+		RequestDispatcher rd= request.getRequestDispatcher("/adminMantenimientoJuegos.jsp");
 		
 		if ("Buscar".equals(accion)) {
-		    // Invoke FirstServlet's job here.
 			System.out.println("buscar");
 			
+			ArrayList<JuegoDTO> lista = null;
+
+			String nombreJuego=request.getParameter("txtNombreJuego");
+			
 			JuegoService servicio = new JuegoService();
-			ArrayList<JuegoDTO>lista = servicio.listarJuego(nombreJuego);
 			
-			RequestDispatcher rd= request.getRequestDispatcher("/adminMantenimientoJuegos.jsp");
-			
+			if(nombreJuego.trim() == ""){
+				request.setAttribute("error", "Ingrese nombre de juego");
+				lista = servicio.listarJuegos();
+			}
+			else{
+				lista = servicio.listarJuego(nombreJuego);
+			}
 			HttpSession misesion = request.getSession();
 			misesion.setAttribute("listado", lista);
-					
-			rd.forward(request, response);
+			
 		} else if ("Agregar".equals(accion)) {
+			
+			String nombreJuego=request.getParameter("txtNombreJuego");
+			String descripcionJuego=request.getParameter("txtDescripcionJuego");
+			double precioJuego=Double.parseDouble(request.getParameter("txtPrecioJuego"));
+			String codigoAdministrador= admin.getCodigoAdministrador();
+			int categoriaJuego=Integer.parseInt(request.getParameter("cboCategoria"));
+			int tipoJuego=Integer.parseInt(request.getParameter("cboTipo"));	
+			String estadoJuego=request.getParameter("cboEstadoJuegos");	
 		    
 			System.out.println("Agregar");
 			
-				JuegoService servicio = new JuegoService();
-				int rs = servicio.AgregarJuego(nombreJuego, descripcionJuego, precioJuego, tipoJuego, categoriaJuego, codigoAdministrador, estadoJuego);
-
-				request.setAttribute("error", "Algo no esta bien");
+			JuegoService servicio = new JuegoService();
+			int rs = servicio.AgregarJuego(nombreJuego, descripcionJuego, precioJuego, tipoJuego, categoriaJuego, codigoAdministrador, estadoJuego);
+			
+			if(rs == 0){
+				request.setAttribute("error", "Error al agregar juego");
+			}
+			else{
+				request.setAttribute("confirmacion", "Juego Agregado");
+			}
 				
-				ArrayList<JuegoDTO> lista = servicio.listarJuegos();
-				request.getSession().setAttribute("listado", lista);
-				
-				request.getRequestDispatcher("/adminMantenimientoJuegos.jsp").forward(request, response);
-
-
+			ArrayList<JuegoDTO> lista = servicio.listarJuegos();
+			request.getSession().setAttribute("listado", lista);
+			
 		}else if ("Modificar".equals(accion)) {
+			
+			String codigojuego=request.getParameter("txtCodigoJuego");
+			String nombreJuego=request.getParameter("txtNombreJuego");
+			String descripcionJuego=request.getParameter("txtDescripcionJuego");
+			double precioJuego=Double.parseDouble(request.getParameter("txtPrecioJuego"));
+			int categoriaJuego=Integer.parseInt(request.getParameter("cboCategoria"));
+			int tipoJuego=Integer.parseInt(request.getParameter("cboTipo"));	
+			String estadoJuego=request.getParameter("cboEstadoJuegos");	
 		    
 			System.out.println("Modificar");
 			
-			
 			JuegoService servicio = new JuegoService();
-			int rs = servicio.ModificarJuego(codigojuego, nombreJuego, descripcionJuego, precioJuego, tipoJuego, categoriaJuego, codigoAdministrador, estadoJuego);
+			int rs = servicio.ModificarJuego(codigojuego, nombreJuego, descripcionJuego, precioJuego, tipoJuego, categoriaJuego, estadoJuego);
 			
-			JuegoService servicios = new JuegoService();
+			if( rs == 0){
+				request.setAttribute("error", "Error al modificar juego");
+			}
+			else{
+				request.setAttribute("confirmacion", "Juego Modificado");
+			}
+			
 			ArrayList<JuegoDTO> lista = servicio.listarJuegos();
 			request.getSession().setAttribute("listado", lista);
-
-			RequestDispatcher rd = request.getRequestDispatcher("/adminMantenimientoJuegos.jsp");
-				
-			rd.forward(request, response);
 		}
+		
+		rd.forward(request, response);
 	}
 }

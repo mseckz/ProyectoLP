@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.DetalleCarritoDTO;
+import beans.UsuarioDTO;
+import service.CarritoService;
 import service.DetalleCarritoService;
 
 /**
@@ -36,7 +38,11 @@ public class AgregarJuegoCarrito extends HttpServlet {
 	private void procesar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String codigoJuego = request.getParameter("codigo");
-		String codigoCarrito = "CA100000";
+		String nombreJuego = request.getParameter("nombre");
+		UsuarioDTO usu = (UsuarioDTO)request.getSession().getAttribute("usuario");
+		
+		CarritoService servicioCarr = new CarritoService();
+		String codigoCarrito = servicioCarr.buscarCarrito(usu.getCodigoUsuario()).getCodigoCarrito();
 		int cantidad = 1;
 		double costo = Double.parseDouble(request.getParameter("costo"));
 		String estado = "En proceso";
@@ -46,6 +52,9 @@ public class AgregarJuegoCarrito extends HttpServlet {
 		
 		if(rs == 0){
 			request.setAttribute("Error", "Error al agregar item");
+		}
+		else{
+			request.setAttribute("confirmacion", nombreJuego + " fue añadido al carrito de compras");
 		}
 		
 		request.getRequestDispatcher("ListadoJuegos").forward(request, response);

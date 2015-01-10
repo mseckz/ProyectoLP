@@ -22,7 +22,7 @@
 	<bodycontent>empty</bodycontent>
 	<info>Muestra un combo</info>
 	<attribute>
-		<name>nombre</name>
+		<name>tipo</name>
 		<required>false</required>
 		<rtexprvalue>false</rtexprvalue>
 	</attribute>

@@ -57,7 +57,6 @@ public class LoguearUsuario extends HttpServlet {
 		String password = request.getParameter("txtPassword");
 
 		// //////////////////////////////////
-		// //////////////////////////////////
 		// Loguear como administrador
 		if (!nombre.contains("@")) {
 			System.out.println("Loguear Administrador");
@@ -72,7 +71,7 @@ public class LoguearUsuario extends HttpServlet {
 			}
 
 			RequestDispatcher rd;
-			if (validado != null && estado.matches("Activo")) {
+			if (validado != null && estado.toLowerCase().matches("activo")) {
 				rd = request.getRequestDispatcher("/admin_main.jsp");
 
 				HttpSession misesion = request.getSession();
@@ -83,6 +82,7 @@ public class LoguearUsuario extends HttpServlet {
 				misesion.setAttribute("datosconsesion", validado.getNombre()
 						+ " " + validado.getApellidoPaterno());
 				misesion.setAttribute("datosAdmin", "administrador");
+				misesion.setAttribute("admindto", validado);
 
 			} else {
 				rd = request.getRequestDispatcher("/sesionRegistro.jsp");
@@ -93,7 +93,7 @@ public class LoguearUsuario extends HttpServlet {
 			rd.forward(request, response);
 
 		}
-		// //////////////////////////////////
+
 		// //////////////////////////////////
 		// Loguear como Usuario
 		if (nombre.contains("@")) {
@@ -101,32 +101,38 @@ public class LoguearUsuario extends HttpServlet {
 
 			UsuarioService servicio = new UsuarioService();
 			UsuarioDTO validado = servicio.validaUsuario(nombre, password);
+			System.out.println(validado.getCorreo());
 			String estado = "";
+			
 			if (validado != null) {
 				estado = validado.getEstado();
-				System.out.println("" + estado);
+				
+				RequestDispatcher rd;
+				
+				if(estado.toLowerCase().equals("activo")){
+					rd = request.getRequestDispatcher("/user_main.jsp");
+
+					HttpSession misesion = request.getSession();
+					System.out.println("Sesion Iniciada :   " + misesion.getId());
+					System.out.println("Datos usuario servlet:   "
+							+ validado.getNombre() + " "
+							+ validado.getApellidoPaterno());
+					misesion.setAttribute("datosconsesion", validado.getNombre()
+							+ " " + validado.getApellidoPaterno());
+					misesion.setAttribute("datosUser", "usuario");
+					misesion.setAttribute("usuariodto", validado);
+				}
+				else {
+					rd = request.getRequestDispatcher("/sesionRegistro.jsp");
+					request.setAttribute("mensaje", "Cuenta desactivada");
+				}
+				
+				rd.forward(request, response);
 			}
-
-			RequestDispatcher rd;
-			if (validado != null && estado.matches("Activo")) {
-				rd = request.getRequestDispatcher("/user_main.jsp");
-
-				HttpSession misesion = request.getSession();
-				System.out.println("Sesion Iniciada :   " + misesion.getId());
-				System.out.println("Datos usuario servlet:   "
-						+ validado.getNombre() + " "
-						+ validado.getApellidoPaterno());
-				misesion.setAttribute("datosconsesion", validado.getNombre()
-						+ " " + validado.getApellidoPaterno());
-				misesion.setAttribute("datosUser", "usuario");
-
-			} else {
-				rd = request.getRequestDispatcher("/sesionRegistro.jsp");
-				request.setAttribute("mensaje",
-						"Usuario o contraseña incorrectos");
-			}
-
-			rd.forward(request, response);
+			else{
+				request.setAttribute("mensaje", "Usuario o contraseña incorrectas");
+				request.getRequestDispatcher("/sesionRegistro.jsp").forward(request, response);
+			}	
 		}
 
 	}

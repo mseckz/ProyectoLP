@@ -9,7 +9,6 @@
 <body>
 <header>
 	<c:import url="header.jsp" />
-	<c:import url="menuAdmin.jsp" />
 </header>
 <div class="container">
 	<div class="padded">

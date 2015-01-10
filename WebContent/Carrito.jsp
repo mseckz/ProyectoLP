@@ -9,41 +9,37 @@
 <body>
 	<header>
 		<c:import url="header.jsp"></c:import>
-		<c:import url="menuNormal.jsp"></c:import>
 	</header>
 	<div class="container">
 	<div class="padded">
 	<div class="row">
 		<div class="one whole padded">
-		<table>
-			<thead>
-				<th>Juego</th><th>Genero</th><th>Costo</th><th>Cantidad</th>
-			</thead>
-			<c:forEach var="det" items="${listaCarrito}">
-				<tr>
-					<td><c:out value="${det.codigoJuego}"></c:out></td>
-					<td><c:out value="${det.codigoJuego}"></c:out></td>
-					<td><c:out value="${det.costo}"></c:out></td>
-					<td><input type="text" value="<c:out value="${det.cantidad}"></c:out>" name="txtCantidad"></td>
-				</tr>
-			</c:forEach>
+			<p><c:out value="${requestScope.confirmacion}"></c:out></p>
 			<c:choose>
     			<c:when test="${empty juego}">
+    				<div>
+    					<p>No hay items en el Carrito</p>
+    				</div>
     			</c:when>
     			<c:otherwise>
+    			<form>
+    			<table>
+    				<thead>
+						<th>Juego</th><th>Genero</th><th>Costo</th><th>Cantidad</th>
+					</thead>
         			<tr>
 						<td><c:out value="${juego.nombre}"></c:out></td>
 						<td><c:out value="${juego.categoria}"></c:out></td>
 						<td><c:out value="${juego.costo}"></c:out></td>
 						<td>
-						<form>
 							<input type="text" value="1" name="txtCantidad">
-						</form>
 						</td>
 					</tr>
+				</table>
+				<input type="submit" value="Actualizar carrito de compra">
+				</form>
     			</c:otherwise>
 			</c:choose>
-		</table>
 		</div>
 	</div>
 	</div>

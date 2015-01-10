@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import service.JuegoService;
 import service.SerialService;
+import beans.JuegoDTO;
 import beans.SerialDTO;
 /**
  * Servlet implementation class ListarLicenciasTabla
@@ -27,11 +29,14 @@ public class ListarLicenciasTabla extends HttpServlet {
 		SerialService servicio = new SerialService();
 		ArrayList<SerialDTO> lista = servicio.listarSerial();
 
-		RequestDispatcher rd = request
-				.getRequestDispatcher("/admin_MantenimientoLicensias.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/admin_MantenimientoLicensias.jsp");
+		
+		JuegoService servJuegos = new JuegoService();
+		ArrayList<JuegoDTO> listaJuegos =servJuegos.listarJuegos();
 
 		HttpSession misesion = request.getSession();
 		misesion.setAttribute("mensaje", lista);
+		misesion.setAttribute("listaJuegos", listaJuegos);
 
 		rd.forward(request, response);
 	}

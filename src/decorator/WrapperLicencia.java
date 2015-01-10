@@ -10,8 +10,9 @@ public class WrapperLicencia extends TableDecorator{
 		SerialDTO mat = (SerialDTO)getCurrentRowObject();
 		
 		String cod=mat.getCodigoSerial();
+		String estado = mat.getEstado();
 	
-		return "<a href=\"admin_MantenimientoLicensias.jsp?cod=" +cod+"\"> Selecciona </a>";
+		return "<a href=\"admin_MantenimientoLicensias.jsp?cod=" +cod+"&estado="+estado+"\"> Selecciona </a>";
 	}
 
 }

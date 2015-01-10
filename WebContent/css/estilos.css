@@ -1,0 +1,10 @@
+@CHARSET "ISO-8859-1";
+
+#datosjuego {
+	float: left;
+	margin-right: 15px;
+}
+
+#frmCarrito{
+	padding-top: 10px;
+}

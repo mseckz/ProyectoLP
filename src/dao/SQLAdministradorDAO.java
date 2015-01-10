@@ -17,9 +17,9 @@ public class SQLAdministradorDAO implements AdministradorDAO{
 	public AdministradorDTO validaAdministrador(String nombre, String password) {
 		// TODO Auto-generated method stub
 		AdministradorDTO user = null;
-		
 		Connection con = null;    		// retorna si hubo o no conexion en MySQLConexion
 		PreparedStatement pst=null;		// sirve para las sentencias
+		
 		try {
 			con=SQLServerConexion.getConexion();
 			

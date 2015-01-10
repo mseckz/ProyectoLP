@@ -16,6 +16,7 @@ public class SQLSerialDAO implements SerialDAO{
 	public ArrayList<SerialDTO> listado() {
 		PreparedStatement pst = null;
 		Connection con = null;
+		ResultSet rs = null;
 		ArrayList<SerialDTO> lista =new ArrayList<SerialDTO>();
 		SerialDTO prod = null;
 		
@@ -23,7 +24,7 @@ public class SQLSerialDAO implements SerialDAO{
 			con= SQLServerConexion.getConexion();
 			String sql = "SELECT * FROM LICENCIA";
 			pst = con.prepareStatement(sql);
-			ResultSet rs = pst.executeQuery();
+			rs = pst.executeQuery();
 			while (rs.next()) {
 				
 				prod = new SerialDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
@@ -33,6 +34,14 @@ public class SQLSerialDAO implements SerialDAO{
 
 		} catch (Exception e) {
 			System.out.println("Error al listar los juegos"+e);
+		} finally{
+			try {
+				if(rs != null) rs.close();
+				if(pst!=null) pst.close(); 
+				if(con!=null) con.close();
+			} catch (SQLException e) {
+				System.out.println("Error al cerrar -- desde el Servlet -- registrar licencia");
+			}
 		}
 		return lista;
 	}
@@ -45,7 +54,7 @@ public class SQLSerialDAO implements SerialDAO{
 		try {
 			con=SQLServerConexion.getConexion();
 			
-			String sql="INSERT INTO LICENCIA (CODIGOJUEGO, SERIAL, ESTADO,FECHACREACION) VALUES (?, ?, ?, ?)";  // sentencia de consulta
+			String sql="INSERT INTO LICENCIA (CODIGOJUEGO, SERIAL, ESTADO,FECHACREACION) VALUES (?, ?, ?, GETDATE())";  // sentencia de consulta
 			
 			pst=con.prepareStatement(sql);
 			pst.setString(1, codigoJuego);			// asigna los parametros del INSERT
@@ -68,11 +77,6 @@ public class SQLSerialDAO implements SerialDAO{
 		return rs;
 	}
 
-	@Override
-	public ArrayList<SerialDTO> listarSerial(String nombre) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	@Override
 	public int modificaLicencia(String codigo, String status) {
@@ -101,6 +105,42 @@ public class SQLSerialDAO implements SerialDAO{
 			}
 		}
 		return rs;
+	}
+
+	@Override
+	public ArrayList<SerialDTO> listarSerial(String codigo) {
+		
+		PreparedStatement pst = null;
+		Connection con = null;
+		ResultSet rs = null;
+		ArrayList<SerialDTO> lista =new ArrayList<SerialDTO>();
+		SerialDTO prod = null;
+		
+		try {
+			con= SQLServerConexion.getConexion();
+			String sql = "SELECT * FROM LICENCIA where CODIGOJUEGO = ?";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, codigo);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				
+				prod = new SerialDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+				lista.add(prod);
+				System.out.println(lista);
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error al listar los juegos"+e);
+		} finally{
+			try {
+				if(rs != null) rs.close();
+				if(pst!=null) pst.close(); 
+				if(con!=null) con.close();
+			} catch (SQLException e) {
+				System.out.println("Error al cerrar -- desde el Servlet -- registrar licencia");
+			}
+		}
+		return lista;
 	}
 
 }

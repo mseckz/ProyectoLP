@@ -53,7 +53,7 @@ public class RegistroUsuario extends HttpServlet {
 			}
 			else{
 				request.setAttribute("confirmacion", "Usuario registrado");
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
+				request.getRequestDispatcher("/sesionRegistro.jsp").forward(request, response);
 			}
 		}
 		else{

@@ -43,40 +43,43 @@ public class ModificarLicencias extends HttpServlet {
 	}
 	
 	private void procesarServlet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String accion = request.getParameter("action");
-		String licencia=request.getParameter("txtLicencia");
-		String codigo=request.getParameter("txtCodigo");
-		String status=request.getParameter("cboStatus");
-				
+		
+		RequestDispatcher rd= request.getRequestDispatcher("/admin_MantenimientoLicensias.jsp");
 		
 		if ("Buscar".equals(accion)) {
-		    // Invoke FirstServlet's job here.
 			System.out.println("buscar");
 			
+			String codJuego =request.getParameter("cboJuegos");
+			ArrayList<SerialDTO> lista = null;
 			SerialService servicio = new SerialService();
-			ArrayList<SerialDTO> lista = servicio.listarSerial(codigo);
 			
-			RequestDispatcher rd= request.getRequestDispatcher("/admin_MantenimientoLicensias.jsp");
-			
+			if(codJuego == ""){
+				lista = servicio.listarSerial();
+			}else{
+				lista = servicio.listarSerial(codJuego);
+			}
+		
 			HttpSession misesion = request.getSession();
 			misesion.setAttribute("mensaje", lista);
 					
 			rd.forward(request, response);
 		} else if ("Modificar".equals(accion)) {
-		    // Invoke SecondServlet's job here.
+			
+			String codigo=request.getParameter("txtCodigo");
+			String status=request.getParameter("cboStatus");
+		   
 			System.out.println("Modificar");
 			
 			SerialService servicio = new SerialService();
 			 int rs = servicio.modificaLicencia(codigo, status);
+			 ArrayList<SerialDTO> lista = servicio.listarSerial();
 			 
-			 SerialService servicio1 = new SerialService();
-			 ArrayList<SerialDTO> lista = servicio1.listarSerial();
-			 
-			 RequestDispatcher rd = request.getRequestDispatcher("/admin_MantenimientoLicensias.jsp");
 			 if (rs != 0) {
-			 request.setAttribute("mensaje1", "Licencia modificado");
+				 request.setAttribute("confirmacion", "Licencia modificado");
 			 } else {
-			 request.setAttribute("mensaje1", "Error al modificar");
+				 request.setAttribute("error", "Error al modificar");
 			 }
 			 			 				
 			HttpSession misesion = request.getSession();
@@ -84,8 +87,28 @@ public class ModificarLicencias extends HttpServlet {
 				
 			rd.forward(request, response);
 		}
-		
-		
+		else if("Agregar".equals(accion)){
+			String codigoJuego = request.getParameter("cboJuegos");
+			String licencia=request.getParameter("txtLicencia");
+			String estado=request.getParameter("cboStatus");
+			
+			System.out.println("Agregar");
+			
+			SerialService servicio = new SerialService();
+			 int rs = servicio.AgregarLicencia(codigoJuego, licencia, estado);
+			 ArrayList<SerialDTO> lista = servicio.listarSerial();
+			 
+			 if (rs != 0) {
+				 request.setAttribute("confirmacion", "Licencia agregada");
+			 } else {
+				 request.setAttribute("error", "Error al agregar licencia");
+			 }
+			 			 				
+			HttpSession misesion = request.getSession();
+			misesion.setAttribute("mensaje", lista);
+				
+			rd.forward(request, response);
+		}
 	}
 
 }

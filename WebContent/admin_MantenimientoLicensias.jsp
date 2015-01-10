@@ -8,7 +8,6 @@
   <body>
     <header class="padded">
       <c:import url="header.jsp" />
-		<c:import url="menuAdmin.jsp" />
     </header>
     <div class="container">
       <div class="padded">
@@ -17,8 +16,14 @@
             <h1 class="zero museo-slab">Mantenimiento de Licencias</h1>
             <p class="quicksand"></p>
           </div>
-          <div class="two fifths align-right-ipad align-right-desktop flipInX animated">
-          </div>
+          <div class="row">
+			<c:if test="${requestScope.error != null}">
+				<p class="alert dismissible message"><c:out value="${requestScope.error}"></c:out></p>
+			</c:if>
+			<c:if test="${requestScope.confirmacion != null}">
+				<p class="success dismissible message"><c:out value="${requestScope.confirmacion}"></c:out></p>
+			</c:if>	
+		  </div>
         </div>
       </div>
       <hr>
@@ -30,23 +35,28 @@
             <div class="row">
                 <div class="one half padded">
                   <label for="name">Juego</label>
-                  	<libreria:comboJuegos/>                  
+                  	<select name="cboJuegos">
+						<option value="">Elija Juego</option>
+						<c:forEach var="juego" items="${sessionScope.listaJuegos}">
+							<option value="${juego.codigojuego}">${juego.nombre}</option>
+						</c:forEach>
+					</select>                 
                 </div>
                 <div class="one half padded">
                   <label for="name">Licencia</label>
-                  <input id="name" type="text" name="txtLicencia" placeholder="Licencia">
+                  <input id="name" type="text" name="txtLicencia" placeholder="Licencia" >
                 </div>
                 <div class="one half padded">
 					<label for="name">Codigo de Licencia</label> 
-					<input id="name" type="text" name="txtCodigo" placeholder="Codigo de Licencia" value="${param.cod}" required>
+					<input id="name" type="text" name="txtCodigo" placeholder="Codigo de Licencia" value="${param.cod}">
 				</div>
 							
                 <div class="one half padded">
 					<label for="name">Status</label>
 						<select name="cboStatus">
-							<option value="" disabled="" selected="">Status</option>
-							<option value="Libre">Libre</option>
-							<option value="Usado">Usado</option>
+							<option value="">Status</option>
+							<option value="Libre" ${param.estado == 'Libre' ? 'selected="selected"' : ''}>Libre</option>
+							<option value="Usado" ${param.estado == 'Usado' ? 'selected="selected"' : ''}>Usado</option>
 						</select>
 				</div>
               </div>
@@ -55,21 +65,12 @@
             <div class="row">
                 <div class="one half padded">
                   <label for="name"></label>
-                  <input id="Buscar" type="button" value="Buscar" name="action" required> 
+                  <input id="Buscar" type="submit" value="Buscar" name="action" required> 
                   <input id="name" type="submit" value="Agregar" name="action" required>
                   <input id="Modificar" type="submit" value="Modificar" name="action" required>
                   <input id="name" type="button" value="Limpiar" required>
                 </div>
-                
-                <div class="one whole padded">
-						<h1>
-							<%
-								String mensaje1=(String) request.getAttribute("mensaje1");
-								if(mensaje1!=null)
-									out.println("<center>"+mensaje1+"<center>");				
-						%>
-						</h1>
-				</div>
+               
 				<div class="one whole padded">
 
 						<display:table name="${sessionScope.mensaje}" pagesize="10"	export="true" decorator="decorator.WrapperLicencia">

@@ -23,8 +23,8 @@ public class JuegoService {
 	public int AgregarJuego(String nombre,String descripcion,double costo,int tipo,int categoria,String codigoadmin,String estado){
 		return objJuego.AgregarJuego(nombre, descripcion, costo, tipo, categoria, codigoadmin, estado);
 	}
-	public int ModificarJuego(String codigoJuego,String nombre,String descripcion,double costo,int tipo,int categoria,String codigoadmin,String estado){
-		return objJuego.ModificarJuego(codigoJuego, nombre, descripcion, costo, tipo, categoria, codigoadmin, estado);
+	public int ModificarJuego(String codigoJuego,String nombre,String descripcion,double costo,int tipo,int categoria,String estado){
+		return objJuego.ModificarJuego(codigoJuego, nombre, descripcion, costo, tipo, categoria, estado);
 	}
 
 	public JuegoDTO buscarJuego(String codigoJuego) {

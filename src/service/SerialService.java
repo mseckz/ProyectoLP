@@ -16,9 +16,9 @@ public class SerialService {
 		return objSerialDAO.listado();
 	}
 	
-	public ArrayList<SerialDTO> listarSerial(String serial) {
+	public ArrayList<SerialDTO> listarSerial(String codJuego) {
 		// TODO Auto-generated method stub
-		return objSerialDAO.listarSerial(serial);
+		return objSerialDAO.listarSerial(codJuego);
 	}
 	public int AgregarLicencia(String codigoSerial, String codigoJuego, String serial){
 		return objSerialDAO.AgregarLicencia(codigoSerial, codigoJuego, serial);

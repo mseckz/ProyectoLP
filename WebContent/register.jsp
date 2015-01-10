@@ -8,7 +8,6 @@
 <body>
 <header>
 	<c:import url="header.jsp" />
-	<c:import url="menuNormal.jsp" />
 </header>
 <div class="container">
     <div class="padded">

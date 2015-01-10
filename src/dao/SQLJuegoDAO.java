@@ -83,8 +83,36 @@ public class SQLJuegoDAO implements JuegoDAO {
 
 	@Override
 	public ArrayList<JuegoDTO> listarJuego(String nombrejuego) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<JuegoDTO> juegos = new ArrayList<JuegoDTO>();
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		
+		try {
+			con = SQLServerConexion.getConexion();
+			String sql = "SELECT * FROM JUEGO WHERE NOMBRE LIKE ? + '%'";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, nombrejuego);
+			rs = pst.executeQuery();
+			
+			while(rs.next()){
+				JuegoDTO juego = new JuegoDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getInt(5), 
+						 		          rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9));
+				juegos.add(juego);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Error al buscar juego POR NOMBRE");
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pst != null) pst.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				System.out.println("Error al cerrar desde el servlet");
+			}		
+		}	
+		return juegos;
 	}
 
 	@Override
@@ -110,9 +138,7 @@ public class SQLJuegoDAO implements JuegoDAO {
 
 			rs = pst.executeUpdate();
 		} catch (Exception e) {
-			System.out
-					.println("Error en la conexión -- desde el Servlet -- registrar juego");
-
+			System.out.println("Error en la conexión -- desde el Servlet -- registrar juego");
 		} finally {
 			try {
 				if (pst != null)
@@ -120,26 +146,20 @@ public class SQLJuegoDAO implements JuegoDAO {
 				if (con != null)
 					con.close();
 			} catch (SQLException e) {
-				System.out
-						.println("Error al cerrar -- desde el Servlet -- registrar juego");
+				System.out.println("Error al cerrar -- desde el Servlet -- registrar juego");
 			}
 		}
-
 		return rs;
 	}
 
 	public int ModificarJuego(String codigoJuego, String nombre,
-			String descripcion, double costo, int tipo, int categoria,
-			String codigoadmin, String estado) {
-		// TODO Auto-generated method stub
+			String descripcion, double costo, int tipo, int categoria, String estado) {
 		int rs = 0;
 		Connection con = null;
 		PreparedStatement pst = null;
 		try {
 			con = SQLServerConexion.getConexion();
-
 			String sql = "UPDATE JUEGO SET NOMBRE=?,DESCRIPCION=?,COSTO=?,TIPO=?,CATEGORIA=?,ESTADO=? WHERE CODIGOJUEGO=?";
-
 			pst = con.prepareStatement(sql);
 			System.out.println(sql);
 			pst.setString(1, nombre);
@@ -152,9 +172,7 @@ public class SQLJuegoDAO implements JuegoDAO {
 
 			rs = pst.executeUpdate();
 		} catch (Exception e) {
-			System.out
-					.println("Error en la conexión -- desde el Servlet -- registrar juego");
-
+			System.out.println("Error en la conexión -- desde el Servlet -- registrar juego");
 		} finally {
 			try {
 				if (pst != null)
@@ -162,8 +180,7 @@ public class SQLJuegoDAO implements JuegoDAO {
 				if (con != null)
 					con.close();
 			} catch (SQLException e) {
-				System.out
-						.println("Error al cerrar -- desde el Servlet -- registrar juego");
+				System.out.println("Error al cerrar -- desde el Servlet -- registrar juego");
 			}
 		}
 		return rs;

@@ -27,6 +27,7 @@
     <link type="text/css" rel="stylesheet" href="../css/groundwork-ui.css">
     <link type="text/css" rel="stylesheet" href="../css/groundwork-anim.css">
     <link type="text/css" rel="stylesheet" href="../css/groundwork-ie.css"><![endif]-->
+    <link type="text/css" rel="stylesheet" href="css/estilos.css">
     <style type="text/css">
       .logo {
         position: relative;
@@ -74,7 +75,6 @@
 <body>
 <header class="padded">
 	<c:import url="header.jsp" />
-	<c:import url="menuNormal.jsp" />
 </header>
     <div class="container">
       <div class="padded">
@@ -108,12 +108,15 @@
           	<div class="one fourth three-up-small-tablet two-up-mobile padded bounceInDown animated">
               <div class="box">
                 <h4 data-compression="7" data-max="20" class="responsive align-center zero"><c:out value="${juego.nombre}" ></c:out></h4><img src="images/bsellers/AssassinsCreedUnity.jpg">
-                <p class="truncate"><c:out value="${juego.descripcion}"></c:out></p>
-                <p>$<c:out value="${juego.costo}"></c:out> USD</p>
-                <form action="ListarDetalleCarrito" method="POST">
+                <div id="datosjuego">
+                	<p class="truncate"><c:out value="${juego.descripcion}"></c:out></p>
+                	<p>$<c:out value="${juego.costo}"></c:out> USD</p>
+                </div>
+                <form action="ListarDetalleCarrito" method="POST" id="frmCarrito">
                 	<input type="hidden" name="codigo" value="<c:out value='${juego.codigojuego}'></c:out>">
+                	<input type="hidden" name="nombre" value="<c:out value='${juego.nombre}'></c:out>">
                 	<button type="submit" class="btn btn-primary">
-  						<i class="icon-shopping-cart pull-right large"></i>
+  						<i class="icon-shopping-cart center large"></i>
 					</button>
                 </form>
               </div>

@@ -14,6 +14,7 @@ import beans.JuegoDTO;
 import beans.TipoJuegoDTO;
 
 public class comboCategoriaJuego extends TagSupport{
+	
 	public int doStartTag() throws JspException {
 		try {
 			JspWriter out = pageContext.getOut();
@@ -21,9 +22,12 @@ public class comboCategoriaJuego extends TagSupport{
 			out.println("<option value='0'>Seleccione</option>");
 			CategoriaService servicio= new CategoriaService();
 			ArrayList<CategoriaJuegoDTO> lista = servicio.listarCategorias();
+			
+			String selected = "";
 			for (int i = 0; i < lista.size(); i++) {
 				CategoriaJuegoDTO listado=lista.get(i);
-				out.println("<option value='"+listado.getIdcategoria()+"'>"+listado.getDescripcion()+"</option>");
+				
+				out.println("<option value='"+listado.getIdcategoria()+"'"+selected+">"+listado.getDescripcion()+"</option>");
 			}
 			
 			out.println("</select>");
@@ -36,4 +40,5 @@ public class comboCategoriaJuego extends TagSupport{
 	public int doEndTag() throws JspException {
 		return EVAL_PAGE;
 	}
+
 }
