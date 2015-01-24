@@ -58,7 +58,7 @@ public class SQLCarritoDAO implements CarritoDAO {
 			}
 			
 		} catch (Exception e) {
-			System.out.println("Error al busca carrito de compra");
+			System.out.println("Error al buscar carrito de compra");
 		} finally {
 			try {
 				if(rs != null) rs.close();

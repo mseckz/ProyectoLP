@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,9 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.DetalleCarritoDTO;
+import beans.JuegoDTO;
 import beans.UsuarioDTO;
 import service.CarritoService;
 import service.DetalleCarritoService;
+import service.JuegoService;
 
 /**
  * Servlet implementation class AgregarJuegoCarrito
@@ -39,25 +42,36 @@ public class AgregarJuegoCarrito extends HttpServlet {
 		
 		String codigoJuego = request.getParameter("codigo");
 		String nombreJuego = request.getParameter("nombre");
-		UsuarioDTO usu = (UsuarioDTO)request.getSession().getAttribute("usuario");
+		UsuarioDTO usu = (UsuarioDTO)request.getSession().getAttribute("usuariodto");
 		
-		CarritoService servicioCarr = new CarritoService();
-		String codigoCarrito = servicioCarr.buscarCarrito(usu.getCodigoUsuario()).getCodigoCarrito();
-		int cantidad = 1;
-		double costo = Double.parseDouble(request.getParameter("costo"));
-		String estado = "En proceso";
-		
-		DetalleCarritoService servicio = new DetalleCarritoService();
-		int rs = servicio.agregarJuego(codigoCarrito, codigoJuego, cantidad, costo, estado);
-		
-		if(rs == 0){
-			request.setAttribute("Error", "Error al agregar item");
+		if(usu == null){
+			JuegoService servjuego = new JuegoService();
+			ArrayList<JuegoDTO> juegos = servjuego.listarJuegos();
+			
+			request.setAttribute("errorAgregar", "Debe estar logueaado para comprar.");
+			request.setAttribute("juegos", juegos);
+			request.getRequestDispatcher("/games.jsp").forward(request, response);
 		}
 		else{
-			request.setAttribute("confirmacion", nombreJuego + " fue añadido al carrito de compras");
-		}
-		
-		request.getRequestDispatcher("ListadoJuegos").forward(request, response);
-		
+			CarritoService servicioCarr = new CarritoService();
+			String codigoCarrito = servicioCarr.buscarCarrito(usu.getCodigoUsuario()).getCodigoCarrito();
+			int cantidad = 1;  // siempre empieza con cantidad de 1, el usuario podra actualiza en el carrito
+			double costo = Double.parseDouble(request.getParameter("costo"));
+			String estado = "En proceso";
+			
+			DetalleCarritoService servicio = new DetalleCarritoService();
+			int rs = servicio.agregarJuego(codigoCarrito, codigoJuego, cantidad, costo, estado);
+			
+			if(rs == 0){
+				request.setAttribute("Error", "Error al agregar item");
+			}
+			else{
+				request.setAttribute("confirmacion", nombreJuego + " fue añadido al carrito de compras");
+				ArrayList<HashMap<String, Object>> listaCarrito = servicio.listadoPorUsuario(usu.getCodigoUsuario());
+				request.getSession().setAttribute("listaCarrito", listaCarrito);
+			}
+			
+			request.getRequestDispatcher("/carrito.jsp").forward(request, response);
+		}	
 	}
 }

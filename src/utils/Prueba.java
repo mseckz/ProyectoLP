@@ -3,6 +3,7 @@ package utils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.HashMap;
 
 public class Prueba {
 	
@@ -20,6 +21,13 @@ public class Prueba {
 		} catch(Exception e){
 			
 		}
+		
+		
+		HashMap<String, Integer> lista  = new HashMap<String, Integer>();
+		lista.put("nombre", 1);
+		lista.put("ape", 2);
+		
+		System.out.println(lista.get("ape"));
 
 	}
 

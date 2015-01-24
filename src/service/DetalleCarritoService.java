@@ -1,6 +1,7 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import beans.DetalleCarritoDTO;
 import interfaces.DetalleCarritoDAO;
@@ -17,6 +18,10 @@ public class DetalleCarritoService {
 	
 	public ArrayList<DetalleCarritoDTO> listadoJuegosCarrito(){
 		return objDetalle.listadoJuegosCarrito();
+	}
+	
+	public ArrayList<HashMap<String, Object>> listadoPorUsuario(String codigoUsuario){
+		return objDetalle.listadoPorUsuario(codigoUsuario);
 	}
 	
 }

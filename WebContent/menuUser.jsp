@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <header class="padded">
 <div class="container">
@@ -59,6 +60,15 @@
                 	<li><a href="./responsive-text.html" title="Responsive text and multi-line text block truncation">Socios Estrategicos</a></li>
                 	<li><a href="./placeholder-text.html" title="Placeholder text and placeholder fonts for rapid prototyping and wireframes">Eventos</a></li>
               	</ul>
+            </li>
+            <li role="menu">
+            	<button>Carrito<i class="icon-shopping-cart"></i></button>
+            	<ul>
+            		<c:forEach var="det" items="${sessionScope.listaCarrito}">
+                  		<li><a><c:out value='${det.get("nombreJuego")}'></c:out></a></li>
+                  	</c:forEach>
+            		<li><a href="Carrito.jsp">Ir a carrito</a></li>
+            	</ul>
             </li>
        		<input id="search-box" name="q" onblur="if (this.value == &quot;&quot;) this.value = &quot;Buscar...&quot;;" onfocus="if (this.value == &quot;Buscar...&quot;) this.value = &quot;&quot;;" size="5" type="text" value="Buscar...">
         </ul>

@@ -23,7 +23,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>AgregarJuegoCarrito</servlet-name>
-    <url-pattern>/agregarJuegoCarrito</url-pattern>
+    <url-pattern>/addJuegoCarrito</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>RegistroUsuario</servlet-name>

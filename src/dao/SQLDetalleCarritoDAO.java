@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import utils.SQLServerConexion;
 import beans.DetalleCarritoDTO;
@@ -76,6 +77,47 @@ public class SQLDetalleCarritoDAO implements DetalleCarritoDAO {
 			}		
 		}	
 		return lista;
+	}
+	
+	
+	public ArrayList<HashMap<String, Object>> listadoPorUsuario(String codigoUsuario){
+		
+		ArrayList<HashMap<String, Object>> listaDetCarrito = new ArrayList<HashMap<String, Object>>();
+	
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		
+		try {
+			con = SQLServerConexion.getConexion();
+			String sql = "exec USP_LISTAR_CARRITO_USUARIO ?";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, codigoUsuario);
+			rs = pst.executeQuery();
+			
+			while(rs.next()){
+				HashMap<String, Object> detalle = new HashMap<String, Object>();
+				detalle.put("nombreJuego", rs.getString(1));
+				detalle.put("categoria", rs.getString(2));
+				detalle.put("costo", rs.getDouble(3));
+				detalle.put("cantidad", rs.getInt(4));
+		
+				listaDetCarrito.add(detalle);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Error al listar juegos de carrito");
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pst != null) pst.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				System.out.println("Error al cerrar desde el servlet");
+			}		
+		}
+		
+		return listaDetCarrito;	
 	}
 
 }

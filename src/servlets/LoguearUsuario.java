@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,8 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.AdministradorDTO;
+import beans.DetalleCarritoDTO;
 import beans.UsuarioDTO;
 import service.AdministradorService;
+import service.CarritoService;
+import service.DetalleCarritoService;
 import service.UsuarioService;
 
 /**
@@ -120,7 +125,14 @@ public class LoguearUsuario extends HttpServlet {
 					misesion.setAttribute("datosconsesion", validado.getNombre()
 							+ " " + validado.getApellidoPaterno());
 					misesion.setAttribute("datosUser", "usuario");
+					
+					// enviar usuario
 					misesion.setAttribute("usuariodto", validado);
+					
+					// Listamos los juegos que tiene el usuario en el carrito
+					DetalleCarritoService servDetalleCarr = new DetalleCarritoService();
+					ArrayList<HashMap<String, Object>> listaCarrito = servDetalleCarr.listadoPorUsuario(validado.getCodigoUsuario());
+					misesion.setAttribute("listaCarrito", listaCarrito);
 				}
 				else {
 					rd = request.getRequestDispatcher("/sesionRegistro.jsp");

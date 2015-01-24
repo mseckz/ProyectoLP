@@ -79,6 +79,9 @@
     <div class="container">
       <div class="padded">
         <div class="row">
+        <c:if test="${requestScope.errorAgregar != null}">
+			<p class="alert dismissible message"><c:out value="${requestScope.errorAgregar}"></c:out></p>
+		</c:if>
           <div class="three fifths bounceInRight animated">
             <h1 class="zero museo-slab">TODOS LOS JUEGOS</h1>
             <p class="quicksand"></p>
@@ -112,9 +115,10 @@
                 	<p class="truncate"><c:out value="${juego.descripcion}"></c:out></p>
                 	<p>$<c:out value="${juego.costo}"></c:out> USD</p>
                 </div>
-                <form action="ListarDetalleCarrito" method="POST" id="frmCarrito">
+                <form action="addJuegoCarrito" method="POST" id="frmCarrito">
                 	<input type="hidden" name="codigo" value="<c:out value='${juego.codigojuego}'></c:out>">
                 	<input type="hidden" name="nombre" value="<c:out value='${juego.nombre}'></c:out>">
+                	<input type="hidden" name="costo" value="<c:out value='${juego.costo}'></c:out>">
                 	<button type="submit" class="btn btn-primary">
   						<i class="icon-shopping-cart center large"></i>
 					</button>
