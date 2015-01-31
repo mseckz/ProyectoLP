@@ -20,6 +20,9 @@
 			<c:if test="${requestScope.confirmacion != null}">
 				<p class="success dismissible message"><c:out value="${requestScope.confirmacion}"></c:out></p>
 			</c:if>
+			<c:if test="${requestScope.error != null}">
+				<p class="alert dismissible message"><c:out value="${requestScope.error}"></c:out></p>
+			</c:if>
 			<c:if test="${requestScope.juego != null}">
 				<p class="alert dismissible message">No hay stock disponible de <c:out value="${requestScope.juego}"></c:out></p>
 			</c:if>
@@ -53,7 +56,14 @@
 					</tr>
 					</c:forEach>
 				</table>
-				<br><input type="submit" value="Actualizar carrito de compra">
+				<div class="row">
+					<div class="col-md-6">
+						<br><a href="ListadoJuegos">Seguir comprando</a>
+					</div>
+					<div class="col-md-6">
+						<br><input type="submit" value="Actualizar carrito de compra">
+					</div>
+				</div>
 				</form>
     			</c:otherwise>
 			</c:choose>

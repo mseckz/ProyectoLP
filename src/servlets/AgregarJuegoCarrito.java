@@ -50,22 +50,29 @@ public class AgregarJuegoCarrito extends HttpServlet {
 			request.getRequestDispatcher("/sesionRegistro.jsp").forward(request, response);
 		}
 		else{
+			DetalleCarritoService servicio = new DetalleCarritoService();
 			CarritoDTO cart = (CarritoDTO) request.getSession().getAttribute("carrito");
 			
-			int cantidad = 1;  // siempre empieza con cantidad de 1, el usuario podra actualiza en el carrito
-			double costo = Double.parseDouble(request.getParameter("costo"));
-			String estado = "En proceso";
+			DetalleCarritoDTO dc = servicio.buscarRegistro(cart.getCodigoCarrito(), codigoJuego);
 			
-			DetalleCarritoService servicio = new DetalleCarritoService();
-			int rs = servicio.agregarJuego(cart.getCodigoCarrito(), codigoJuego, cantidad, costo, estado);
-			
-			if(rs == 0){
-				request.setAttribute("Error", "Error al agregar item");
+			if( dc == null){
+				request.setAttribute("error", "Juego ya esta agregado, actualice cantidad");
 			}
 			else{
-				request.setAttribute("confirmacion", nombreJuego + " fue añadido al carrito de compras");
-				ArrayList<DetalleCarritoDTO> listaCarrito = servicio.listarDetallePorUsuario(cart.getCodigoCarrito());
-				request.getSession().setAttribute("listaCarrito", listaCarrito);
+				int cantidad = 1;  // siempre empieza con cantidad de 1, el usuario podra actualiza en el carrito
+				double costo = Double.parseDouble(request.getParameter("costo"));
+				String estado = "En proceso";
+				
+				int rs = servicio.agregarJuego(cart.getCodigoCarrito(), codigoJuego, cantidad, costo, estado);
+				
+				if(rs == 0){
+					request.setAttribute("Error", "Error al agregar item");
+				}
+				else{
+					request.setAttribute("confirmacion", nombreJuego + " fue añadido al carrito de compras");
+					ArrayList<DetalleCarritoDTO> listaCarrito = servicio.listarDetallePorUsuario(cart.getCodigoCarrito());
+					request.getSession().setAttribute("listaCarrito", listaCarrito);
+				}
 			}
 			
 			request.getRequestDispatcher("/Carrito.jsp").forward(request, response);

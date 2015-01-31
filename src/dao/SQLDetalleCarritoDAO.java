@@ -196,4 +196,39 @@ public class SQLDetalleCarritoDAO implements DetalleCarritoDAO {
 		}
 	}
 
+	@Override
+	public DetalleCarritoDTO buscarRegistro(String codigocarrito, String codigojuego) {
+		
+		DetalleCarritoDTO dc = null;
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		
+		try {
+			con = SQLServerConexion.getConexion();
+			String sql = "SELECT * FROM DETALLECARRITO WHERE CODIGOCARRITO = ? and CODIGOJUEGO = ?";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, codigocarrito);
+			pst.setString(2, codigojuego);
+			rs = pst.executeQuery();
+			
+			if(rs.next()){
+				dc = new DetalleCarritoDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getString(5));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Error al buscar juego en carrito");
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pst != null) pst.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				System.out.println("Error al cerrar desde el servlet");
+			}		
+		}
+		
+		return dc;
+	}
+
 }

@@ -39,7 +39,7 @@
                <c:forEach var="det" items="${sessionScope.listaCarrito}">
                   <li>
                      <a>
-                        <c:out value='${det.get("nombreJuego")}'></c:out>
+                        <c:out value='${det.juego.getNombre()}'></c:out>
                      </a>
                   </li>
                </c:forEach>

@@ -35,4 +35,8 @@ public class DetalleCarritoService {
 	public void limpiarCarrito(String codigoCarrito){
 		objDetalle.limpiarCarrito(codigoCarrito);
 	}
+	
+	public DetalleCarritoDTO buscarRegistro(String codigocarrito, String codigojuego){
+		return objDetalle.buscarRegistro(codigocarrito, codigojuego);
+	}
 }
