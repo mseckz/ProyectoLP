@@ -79,9 +79,6 @@
     <div class="container">
       <div class="padded">
         <div class="row">
-        <c:if test="${requestScope.errorAgregar != null}">
-			<p class="alert dismissible message"><c:out value="${requestScope.errorAgregar}"></c:out></p>
-		</c:if>
           <div class="three fifths bounceInRight animated">
             <h1 class="zero museo-slab">TODOS LOS JUEGOS</h1>
             <p class="quicksand"></p>
@@ -96,21 +93,24 @@
       <div class="row">
         <aside class="one fifth padded bounceInLeft animated">
           <nav title="Shop by Category" role="menu" class="small-tablet nav vertical menu">
-            <ul>
-              <li class="one whole"><a>Por Categoria</a></li>
-              <li class="one whole"><a>Por Precios</a></li>
-              <li class="one whole"><a>Ultimos Lanzamientos</a></li>
-              <li class="one whole"><a>Proximos Lanzamientos</a></li>
-              <li class="one whole"><a>La vieja Escuela</a></li>
-            </ul>
-          </nav>
+			<ul>
+				<c:forEach var="cat" items="${sessionScope.listaCategorias}">
+                  	<li>
+                     	<a href="ListarJuegosporCategoria?categoria=${cat.idcategoria}">
+                        	<c:out value='${cat.descripcion}'></c:out>
+                     	</a>
+                  	</li>
+               	</c:forEach>
+			</ul>
+		</nav>
         </aside>
-        <article class="four fifths">
+        <article class="four fifths" style="padding-left: 20px;">
           <div class="row">
           <c:forEach var="juego" items="${juegos}" >
           	<div class="one fourth three-up-small-tablet two-up-mobile padded bounceInDown animated">
               <div class="box">
-                <h4 data-compression="7" data-max="20" class="responsive align-center zero"><c:out value="${juego.nombre}" ></c:out></h4><img src="images/bsellers/AssassinsCreedUnity.jpg">
+                <h4 data-compression="7" data-max="20" class="responsive align-center zero"><c:out value="${juego.nombre}" ></c:out></h4>
+                <img src="images/bsellers/<c:out value='${juego.codigojuego}'></c:out>.jpg">
                 <div id="datosjuego">
                 	<p class="truncate"><c:out value="${juego.descripcion}"></c:out></p>
                 	<p>$<c:out value="${juego.costo}"></c:out> USD</p>

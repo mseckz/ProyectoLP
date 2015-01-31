@@ -11,5 +11,6 @@ public interface JuegoDAO {
 	public int AgregarJuego(String nombre,String descripcion,double costo,int tipo,int categoria,String codigoadmin,String estado);
 	public int ModificarJuego(String codigoJuego,String nombre,String descripcion,double costo,int tipo,int categoria,String estado);
 	public JuegoDTO buscarJuego(String codigoJuego);
+	public ArrayList<JuegoDTO> listarJuegoxCategoria(int categoria);
 
 }

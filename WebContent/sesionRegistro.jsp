@@ -11,6 +11,9 @@
 	</header>
 	<div class="container">
 		<div class="padded"></div>
+		 <c:if test="${requestScope.errorComprar != null}">
+			<p class="alert dismissible message"><c:out value="${requestScope.errorComprar}"></c:out></p>
+		</c:if>
 		<hr>
 		<article class="row bounceInUp animated">
 			<section class="one half padded bounceInLeft border-right">
@@ -31,7 +34,8 @@
 									type="password" placeholder="Password" name="txtPassword"
 									required>
 							</div>
-							<input type="submit" name="" value="Iniciar Sesion">
+							<br><input type="submit" name="" value="Iniciar Sesion">
+
 				<%
 					String mensaje = (String) request.getAttribute("mensaje");
 					if (mensaje != null)
@@ -41,7 +45,7 @@
 					</div>
 				</form>
 			</section>
-			<section class="one half padded bounceInRight">
+			<section class="one half padded bounceInRight" style="padding-left:20px;">
 				<h3>Crear nueva cuenta</h3>
 				<div class="row">
 					<div class="two-up-small-tablet one-up-mobile">

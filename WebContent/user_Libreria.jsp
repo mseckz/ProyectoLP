@@ -13,6 +13,9 @@
 <div class="container">
     <div class="padded">
         <div class="row">
+        	<c:if test="${requestScope.confirmacion != null}">
+				<p class="success dismissible message"><c:out value="${requestScope.confirmacion}"></c:out></p>
+			</c:if>
         </div>
     </div>
     <hr>

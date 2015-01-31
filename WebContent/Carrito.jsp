@@ -12,15 +12,24 @@
 	<header>
 		<c:import url="header.jsp"></c:import>
 	</header>
-	<fmt:setLocale value="es_PE"/>
+	<fmt:setLocale value="en_US"/>
 	<div class="container">
 	<div class="padded">
 	<div class="row">
 		<div class="one whole padded">
-			<p><c:out value="${requestScope.mensaje}"></c:out></p>
+			<c:if test="${requestScope.confirmacion != null}">
+				<p class="success dismissible message"><c:out value="${requestScope.confirmacion}"></c:out></p>
+			</c:if>
+			<c:if test="${requestScope.juego != null}">
+				<p class="alert dismissible message">No hay stock disponible de <c:out value="${requestScope.juego}"></c:out></p>
+			</c:if>
 			<div class="row">
 				<div class="col-md-6"><h2>Carrito de Compra</h2></div>
-				<div class="col-md-6"><span class="pull-right"><a class="btn btn-primary" href="#">Comprar</a></span></div>
+				<div class="col-md-6">
+				<form action="Checkout" class="pull-right">
+    				<input type="submit" value="Comprar" class="btn btn-primary">
+				</form>
+				</div>
 			</div>
 			<c:choose>
     			<c:when test="${empty sessionScope.listaCarrito}">

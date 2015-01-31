@@ -17,4 +17,6 @@ public interface DetalleCarritoDAO {
 	public int actulizarDetalleCompra(String codigoCarrito, String codigoJuego, int cantidad);
 	
 	public int eliminarItemCarrito(String codCarrito, String codJuego);
+	
+	public void limpiarCarrito(String codigoCarrito);
 }

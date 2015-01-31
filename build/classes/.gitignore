@@ -1,8 +1,4 @@
-/dao
-/decorator
 /servlets
+/dao
 /interfaces
 /service
-/beans
-/etiquetas
-/utils

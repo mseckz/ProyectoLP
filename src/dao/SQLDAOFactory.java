@@ -4,10 +4,12 @@ import interfaces.AdministradorDAO;
 import interfaces.CarritoDAO;
 import interfaces.CategoriaDAO;
 import interfaces.DetalleCarritoDAO;
+import interfaces.DetalleVentaDAO;
 import interfaces.JuegoDAO;
 import interfaces.SerialDAO;
 import interfaces.TipoDAO;
 import interfaces.UsuarioDAO;
+import interfaces.VentaDAO;
 
 public class SQLDAOFactory extends DAOFactory {
 
@@ -49,6 +51,16 @@ public class SQLDAOFactory extends DAOFactory {
 	@Override
 	public AdministradorDAO getAdministradorDAO() {
 		return new SQLAdministradorDAO();
+	}
+
+	@Override
+	public DetalleVentaDAO getDetalleVentaDAO() {
+		return new SQLDetalleVentaDAO();
+	}
+
+	@Override
+	public VentaDAO getVentaDAO() {
+		return new SQLVentaDAO();
 	}
 
 }

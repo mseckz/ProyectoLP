@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.CarritoService;
 import service.UsuarioService;
 import beans.UsuarioDTO;
 
@@ -53,6 +54,7 @@ public class RegistroUsuario extends HttpServlet {
 			}
 			else{
 				request.setAttribute("confirmacion", "Usuario registrado");
+				
 				request.getRequestDispatcher("/sesionRegistro.jsp").forward(request, response);
 			}
 		}

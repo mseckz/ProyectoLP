@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <div class="container">
 	<nav role="navigation" class="nav gap-top">
@@ -7,38 +8,23 @@
             <li><a href="index.jsp"><i class="icon-home"></i> SASUKI</a></li>
             <li role="menu">
             	<button  onclick = "location='ListadoJuegos'">BUSCAR JUEGOS</button>
-                <ul>
-                	<li role="menu">
-                  		<button title="Navigation, buttons, boxes, message boxes, tables, tabs, and forms" onclick = "location='listado.html'">Los más vendidos</button></a>
-                  		<ul>
-                    		<li><a href="./navigation.html" title="Navigation">STARCRAFT II</a></li>
-                    		<li><a href="./buttons.html" title="Buttons, button groups, button menus">BATLEFIELD IV</a></li>
-                    		<li><a href="./boxes.html" title="Boxes">METAL GEAR SOLID : RISING</a></li>
-                    		<li><a href="./messages.html" title="Message boxes">WASTELAND</a></li>
-                    		<li><a href="./tables.html" title="Tables">FINAL FANTASY XIV</a></li>
-                    		<li><a href="./tabs.html" title="Tabs">GOD OF WAR : ASCENTION</a></li>
-                    		<li><a href="./forms.html" title="Form elements">WORLD OF WARCRAFT : PANDARIAN</a></li>
-                  		</ul>
-                	</li>
-        			<li role="menu">
-                  		<button title="Navigation, buttons, boxes, message boxes, tables, tabs, and forms">Todos los juegos</button>
-                  		<ul>
-                    		<li><a href="./navigation.html" title="Navigation"><strong>Por Género</strong></a></li>
-                    		<li><a href="./buttons.html" title="Buttons, button groups, button menus">Accion</a></li>
-                    		<li><a href="./boxes.html" title="Boxes">Carreras</a></li>
-                    		<li><a href="./messages.html" title="Message boxes">Casual</a></li>
-                    		<li><a href="./tables.html" title="Tables">Deportes</a></li>
-                    		<li><a href="./tabs.html" title="Tabs">Indie</a></li>
-                    		<li><a href="./forms.html" title="Form elements">Multijugador Masivo</a></li>
-                    		<li><a href="./forms.html" title="Form elements">Rol</a></li>
-                    		<li><a href="./forms.html" title="Form elements">Simuladores</a></li>
-                  		</ul>
-                	</li>
-                	<li><a href="./icons.html" title="Icons">Ultimos Lanzamientos</a></li>
-                	<li><a href="./responsive-text.html" title="Responsive text and multi-line text block truncation">Proximos Lanzamientos</a></li>
-                	<li><a href="./placeholder-text.html" title="Placeholder text and placeholder fonts for rapid prototyping and wireframes">Los mas Recomendados</a></li>
-                	<li><a href="./animations.html" title="Pure CSS3 Animations">Lo mas Rankeado</a></li>
-                </ul>
+               <ul>
+                  <li>
+                     <button title="Navigation, buttons, boxes, message boxes, tables, tabs, and forms" onclick = "location='ListadoJuegos'">Todos los juegos</button></a>
+                  </li>
+                  <li role="menu">
+                    <button title="Navigation, buttons, boxes, message boxes, tables, tabs, and forms">Por Categorias</button>
+                    <ul>
+                     <c:forEach var="cat" items="${sessionScope.listaCategorias}">
+                  		<li>
+                     		<a href="ListarJuegosporCategoria?categoria=${cat.idcategoria}">
+                        		<c:out value='${cat.descripcion}'></c:out>
+                     		</a>
+                  		</li>
+               		</c:forEach>
+               		</ul> 
+                  </li>
+         	 </ul>
             </li>
       		<li role="menu">
             	<button>Sobre Nosotros</button>

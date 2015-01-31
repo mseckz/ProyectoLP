@@ -171,4 +171,29 @@ public class SQLDetalleCarritoDAO implements DetalleCarritoDAO {
 		return rs;
 	}
 
+	@Override
+	public void limpiarCarrito(String codigoCarrito) {
+
+		Connection con = null;
+		PreparedStatement pst = null;
+		
+		try {
+			con = SQLServerConexion.getConexion();
+			String sql = "DELETE FROM DETALLECARRITO WHERE CODIGOCARRITO = ?";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, codigoCarrito);
+			pst.executeUpdate();		
+			
+		} catch (Exception e) {
+			System.out.println("Error al borrar items de carrito");
+		} finally{
+			try {
+				if(pst != null) pst.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				System.out.println("Error al cerrar desde el servlet");
+			}
+		}
+	}
+
 }

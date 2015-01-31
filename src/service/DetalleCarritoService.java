@@ -31,4 +31,8 @@ public class DetalleCarritoService {
 	public int eliminarItemCarrito(String codCarrito, String codJuego){
 		return objDetalle.eliminarItemCarrito(codCarrito, codJuego);
 	}
+	
+	public void limpiarCarrito(String codigoCarrito){
+		objDetalle.limpiarCarrito(codigoCarrito);
+	}
 }

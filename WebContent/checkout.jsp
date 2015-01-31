@@ -8,7 +8,7 @@
 <head>
 <c:import url="head.jsp"></c:import>
 <body>
-	<fmt:setLocale value="es_PE"/>
+	<fmt:setLocale value="en_US"/>
 	<header>
 		<c:import url="header.jsp"></c:import>
 	</header>
@@ -29,11 +29,23 @@
 							<td><fmt:formatNumber value="${det.subtotal}" type="currency"/></td>
 						</tr>
 						</c:forEach>
-						<tr><td colspan="2"></td><td><fmt:formatNumber value="${det.costo}" type="currency"/></td></tr>
+						<tr><td colspan="3" style="text-align: right;"><b>Subtotal:</b></td><td><fmt:formatNumber value="${requestScope.subtotal}" type="currency"/></td></tr>
+						<tr><td colspan="3" style="text-align: right;"><b>IGV:</b></td><td><fmt:formatNumber value="${requestScope.igv}" type="currency"/></td></tr>
+						<tr><td colspan="3" style="text-align: right;"><b>TOTAL:</b></td><td><fmt:formatNumber value="${requestScope.total}" type="currency"/></td></tr>
 				</table>
+				<br>
+				<div>
+					<form method="post" action="RegistrarVenta">
+						<input type="hidden" name="txtTotal" value="<c:out value='${requestScope.total}'></c:out>">
+						<input type="hidden" name="txtSubtotal" value="<c:out value='${requestScope.subtotal}'></c:out>">
+						<input type="hidden" name="txtIgv" value="<c:out value='${requestScope.igv}'></c:out>">
+						<input type="submit" value="Realizar Compra">
+					</form>
+				</div>
 			</div>
 			</div>
 		</div>
 	</div>
+<c:import url="footer.jsp"></c:import>
 </body>
 </html>

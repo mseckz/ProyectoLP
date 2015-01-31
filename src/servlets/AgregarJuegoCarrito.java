@@ -46,12 +46,8 @@ public class AgregarJuegoCarrito extends HttpServlet {
 		UsuarioDTO usu = (UsuarioDTO)request.getSession().getAttribute("usuariodto");
 		
 		if(usu == null){
-			JuegoService servjuego = new JuegoService();
-			ArrayList<JuegoDTO> juegos = servjuego.listarJuegos();
-			
-			request.setAttribute("errorAgregar", "Debe estar logueaado para comprar.");
-			request.setAttribute("juegos", juegos);
-			request.getRequestDispatcher("/games.jsp").forward(request, response);
+			request.setAttribute("errorComprar", "Debe iniciar sesion o registrarse para comprar");
+			request.getRequestDispatcher("/sesionRegistro.jsp").forward(request, response);
 		}
 		else{
 			CarritoDTO cart = (CarritoDTO) request.getSession().getAttribute("carrito");

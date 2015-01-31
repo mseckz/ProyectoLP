@@ -30,4 +30,8 @@ public class JuegoService {
 	public JuegoDTO buscarJuego(String codigoJuego) {
 		return objJuego.buscarJuego(codigoJuego);
 	}
+	
+	public ArrayList<JuegoDTO> listarJuegoxCategoria(int categoria){
+		return objJuego.listarJuegoxCategoria(categoria);
+	}
 }

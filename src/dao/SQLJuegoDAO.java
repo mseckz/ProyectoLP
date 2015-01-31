@@ -23,7 +23,7 @@ public class SQLJuegoDAO implements JuegoDAO {
 		
 		try {
 			con = SQLServerConexion.getConexion();
-			String sql = "SELECT * FROM JUEGO";
+			String sql = "SELECT * FROM JUEGO order by FECHAINGRESO";
 			pst = con.prepareStatement(sql);
 			rs = pst.executeQuery();
 			
@@ -184,6 +184,39 @@ public class SQLJuegoDAO implements JuegoDAO {
 			}
 		}
 		return rs;
+	}
+	
+	public ArrayList<JuegoDTO> listarJuegoxCategoria(int categoria) {
+		ArrayList<JuegoDTO> juegos = new ArrayList<JuegoDTO>();
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		
+		try {
+			con = SQLServerConexion.getConexion();
+			String sql = "SELECT * FROM JUEGO WHERE categoria = ?";
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, categoria);
+			rs = pst.executeQuery();
+			
+			while(rs.next()){
+				JuegoDTO juego = new JuegoDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getInt(5), 
+						 		          rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9));
+				juegos.add(juego);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Error al buscar juego POR CATEGORIA");
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pst != null) pst.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				System.out.println("Error al cerrar desde el servlet");
+			}		
+		}	
+		return juegos;
 	}
 	
 }

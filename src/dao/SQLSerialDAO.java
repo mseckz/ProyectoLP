@@ -80,7 +80,7 @@ public class SQLSerialDAO implements SerialDAO{
 	
 	@Override
 	public int modificaLicencia(String codigo, String status) {
-		// TODO Auto-generated method stub
+		
 		int rs = 0;
 		Connection con = null;
 		PreparedStatement pst = null;
@@ -127,6 +127,43 @@ public class SQLSerialDAO implements SerialDAO{
 				prod = new SerialDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
 				lista.add(prod);
 				System.out.println(lista);
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error al listar los juegos"+e);
+		} finally{
+			try {
+				if(rs != null) rs.close();
+				if(pst!=null) pst.close(); 
+				if(con!=null) con.close();
+			} catch (SQLException e) {
+				System.out.println("Error al cerrar -- desde el Servlet -- registrar licencia");
+			}
+		}
+		return lista;
+	}
+
+	@Override
+	public ArrayList<SerialDTO> getLicenciasCompra(String codigojuego,
+			int cantidad) {
+		
+		PreparedStatement pst = null;
+		Connection con = null;
+		ResultSet rs = null;
+		ArrayList<SerialDTO> lista =new ArrayList<SerialDTO>();
+		SerialDTO prod = null;
+		
+		try {
+			con= SQLServerConexion.getConexion();
+			String sql = "SELECT TOP (?) * FROM LICENCIA where CODIGOJUEGO = ? AND ESTADO = 'libre'";
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, cantidad);
+			pst.setString(2, codigojuego);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				
+				prod = new SerialDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+				lista.add(prod);
 			}
 
 		} catch (Exception e) {

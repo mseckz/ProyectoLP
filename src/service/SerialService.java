@@ -24,8 +24,11 @@ public class SerialService {
 		return objSerialDAO.AgregarLicencia(codigoSerial, codigoJuego, serial);
 	}
 	public int modificaLicencia(String codigo, String status) {
-		// TODO Auto-generated method stub
 		return objSerialDAO.modificaLicencia(codigo,status);
 	}
-
+	
+	public ArrayList<SerialDTO> getLicenciasCompra(String codigojuego, int cantidad){
+		return objSerialDAO.getLicenciasCompra(codigojuego, cantidad);
+		
+	}
 }
