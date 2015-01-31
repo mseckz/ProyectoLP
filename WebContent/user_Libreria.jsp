@@ -21,8 +21,12 @@
     <hr>
         <div class="row bounceInRight animated">
         	<div class="one whole padded">
-          		<h4>Libreria de Juegos</h4>
+          		<h4>Licencias Adquiridas</h4>
           		
+          		<table>
+          		 <c:forEach var="juego" items="" >
+          		 </c:forEach>
+          		</table>
    		 </div>
 </div><br>
 <hr>

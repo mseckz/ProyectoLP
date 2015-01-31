@@ -55,7 +55,7 @@ public class AgregarJuegoCarrito extends HttpServlet {
 			
 			DetalleCarritoDTO dc = servicio.buscarRegistro(cart.getCodigoCarrito(), codigoJuego);
 			
-			if( dc == null){
+			if( dc != null){
 				request.setAttribute("error", "Juego ya esta agregado, actualice cantidad");
 			}
 			else{

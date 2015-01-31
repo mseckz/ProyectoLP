@@ -6,6 +6,7 @@ import interfaces.CategoriaDAO;
 import interfaces.DetalleCarritoDAO;
 import interfaces.DetalleVentaDAO;
 import interfaces.JuegoDAO;
+import interfaces.ReportesDAO;
 import interfaces.SerialDAO;
 import interfaces.TipoDAO;
 import interfaces.UsuarioDAO;
@@ -61,6 +62,11 @@ public class SQLDAOFactory extends DAOFactory {
 	@Override
 	public VentaDAO getVentaDAO() {
 		return new SQLVentaDAO();
+	}
+
+	@Override
+	public ReportesDAO getReportesDAO() {
+		return new SQLReportesDAO();
 	}
 
 }

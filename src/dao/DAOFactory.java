@@ -6,6 +6,7 @@ import interfaces.CategoriaDAO;
 import interfaces.DetalleCarritoDAO;
 import interfaces.DetalleVentaDAO;
 import interfaces.JuegoDAO;
+import interfaces.ReportesDAO;
 import interfaces.SerialDAO;
 import interfaces.TipoDAO;
 import interfaces.UsuarioDAO;
@@ -25,6 +26,7 @@ public abstract class DAOFactory {
 	public abstract AdministradorDAO getAdministradorDAO();
 	public abstract DetalleVentaDAO getDetalleVentaDAO();
 	public abstract VentaDAO getVentaDAO();
+	public abstract ReportesDAO getReportesDAO();
 	
 	public static DAOFactory getDAOFactory(int qFactory) {
 		switch (qFactory) {

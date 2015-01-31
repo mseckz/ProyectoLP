@@ -13,6 +13,8 @@
 
   <script src="js/libs/modernizr-2.6.2.min.js"></script>
   <script type="text/javascript" src="js/libs/jquery-1.10.2.min.js"></script>
+  <script src="js/jquery-1.11.1.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 <!-- demo -->
     <script type="text/javascript" src="js/demo/jquery.snippet.min.js"></script>
     <script type="text/javascript">

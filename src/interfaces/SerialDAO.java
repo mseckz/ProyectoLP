@@ -14,5 +14,5 @@ public interface SerialDAO {
 	//metodo que devuelve las licencias por juego y cantidad
 	public ArrayList<SerialDTO> getLicenciasCompra(String codigojuego, int cantidad);
 	
-
+	public ArrayList<SerialDTO> licenciasUsuario(String codigousuario);
 }

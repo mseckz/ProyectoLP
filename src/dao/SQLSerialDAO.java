@@ -180,4 +180,41 @@ public class SQLSerialDAO implements SerialDAO{
 		return lista;
 	}
 
+	@Override
+	public ArrayList<SerialDTO> licenciasUsuario(String codigousuario) {
+		
+		PreparedStatement pst = null;
+		Connection con = null;
+		ResultSet rs = null;
+		ArrayList<SerialDTO> lista =new ArrayList<SerialDTO>();
+		SerialDTO prod = null;
+		
+		try {
+			con= SQLServerConexion.getConexion();
+			String sql = "select dv.* from  DETALLEVENTA dv inner join VENTA v on dv.CODIGOVENTA = v.CODIGOVENTA inner join USUARIO u" +
+						 "on u.CODIGOUSUARIO = v.CODIGOUSUA where v.CODIGOUSUA = ?";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, codigousuario);
+			rs = pst.executeQuery();
+			while (rs.next()) {
+				
+				prod = new SerialDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+				lista.add(prod);
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error al listar los juegos"+e);
+		} finally{
+			try {
+				if(rs != null) rs.close();
+				if(pst!=null) pst.close(); 
+				if(con!=null) con.close();
+			} catch (SQLException e) {
+				System.out.println("Error al cerrar -- desde el Servlet -- registrar licencia");
+			}
+		}
+		return lista;
+
+	}
+
 }

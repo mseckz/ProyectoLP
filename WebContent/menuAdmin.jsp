@@ -14,14 +14,6 @@
 	                <li><a href="ListarUsuariosTabla" title="Boxes">Usuarios</a></li>
           		</ul>
             </li>
-            <li role="menu">
-                  		<button title="Navigation, buttons, boxes, message boxes, tables, tabs, and forms">Reportes</button>
-                  		<ul>
-                    		<li><a href="./navigation.html" title="Navigation"><strong>Reportes1</strong></a></li>
-                    		<li><a href="./buttons.html" title="Buttons, button groups, button menus">Reportes2</a></li>
-                    		<li><a href="./boxes.html" title="Boxes">Reportes3</a></li>
-                    	</ul>
-            </li>
       		<li role="menu">
             	<button>Sobre Nosotros</button>
               	<ul>

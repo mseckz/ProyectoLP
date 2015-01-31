@@ -18,9 +18,8 @@
         <div class="row bounceInRight animated">
         	<div class="one whole padded">
           		<h4>Formulario de Registro</h4>
+          		<fieldset>
           		<form action="registrandoUsuario" method="post">
-            	<fieldset>
-              		<legend></legend>
               		<div class="row">
               			<div class="one half padded">
                   			<label for="name">Nombre *</label>
@@ -37,15 +36,15 @@
                 		</div>
                 		<div class="one half padded">
                   			<label for="name">Password *</label>
-                  			<input name="txtPassword" type="password" placeholder="Password" required>
+                  			<input name="txtPassword" type="password" placeholder="Password" required >
                 		</div>
                 		<div class="one half padded">
                   			<label for="name">Apellido Materno*</label>
-                  			<input name="txtApellidoMaterno" type="text" placeholder="Apellido Mat" value="${param.txtApellidoMaterno}"required>
+                  			<input name="txtApellidoMaterno" type="text" placeholder="Apellido Mat" value="${param.txtApellidoMaterno}"required">
                 		</div>
                 		<div class="one half padded">
                   			<label for="name">Confirmar Password *</label>
-                  			<input name="txtPasswordConfirmar" type="password" placeholder="Password" required>
+                  			<input name="txtPasswordConfirmar" type="password" placeholder="Password" required >
                 		</div>
                 		<div class="one half padded">
                   			<label for="email">Email *</label>
@@ -368,10 +367,8 @@
 			<input type="submit" value="Enviar">
         </div>
         </div>
-        </fieldset>
        	</form>
-    	<div class="row">
-    	</div>
+       	 </fieldset>
     </div>
 </div><br>
 <hr>

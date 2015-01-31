@@ -14,14 +14,47 @@
 	<div class="padded">
         <div class="row">
           	<div class="three fifths bounceInRight animated">
-            	<h1 class="zero museo-slab">MODULO DE ADMINISTRACION DE CUENTA DE USUARIO SASUKI</h1>
-            	<p class="quicksand"></p>
-            	<p class="quicksand"> </p>
+            	<h1 class="zero museo-slab">Bienvenido a Sasuki</h1>
+            	
           	</div>
           	
         </div>
     </div>
     <hr>
+    <!-- INICIO CARRUSEL -->
+	<div id="myCarousel" class="carousel slide"  style="width:600px;height:350px;background-position:center top"> 
+  	<!-- Carousel indicators -->
+    	<ol class="carousel-indicators">
+      		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      		<li data-target="#myCarousel" data-slide-to="1"></li>
+      		<li data-target="#myCarousel" data-slide-to="2"></li>
+      		<li data-target="#myCarousel" data-slide-to="3"></li>
+      		<li data-target="#myCarousel" data-slide-to="4"></li>
+    	</ol>
+    	<!-- Carousel items -->
+    	<div class="carousel-inner">
+      		<div class="item active">
+        		<img src="images/slide/Banner-dragonage.jpg"  alt="Dragon Age">
+     	 	</div>
+      		<div class="item">
+        		<img src="images/slide/Banner-fifa15.jpg" alt="FIFA 15">
+      		</div>
+      		<div class="item">
+        		<img src="images/slide/Banner-grimrock.jpg" alt="GrimRock">
+      		</div>
+      		<div class="item">
+        		<img src="images/slide/Banner-shadow.jpg" alt="Shadow">
+      		</div>  
+      		<div class="item">
+        		<img src="images/slide/Banner-styx.jpg" alt="STYX">
+      		</div>                    
+    	</div>
+  		<!-- Carousel nav -->
+    	<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    	<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+  	</div>
+  	<br>
+	<!--TERMINA CARRUSEL-->
 <div class="pad-top pad-left pad-right bounceInRight animated">
 	<h4 class="zero">INTRO</h4>
         <p></p>
@@ -61,4 +94,10 @@
 <hr>
 <c:import url="footer.jsp" />
 </body>
+<script>
+// Load this when the DOM is ready
+$(function(){
+  $('#myCarousel').carousel();
+});
+</script>
 </html>
