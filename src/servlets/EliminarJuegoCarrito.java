@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,16 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import service.DetalleCarritoService;
 import beans.CarritoDTO;
 import beans.DetalleCarritoDTO;
-import beans.UsuarioDTO;
+import service.DetalleCarritoService;
 
 /**
- * Servlet implementation class UpdateCarrito
+ * Servlet implementation class EliminarJuegoCarrito
  */
-@WebServlet("/UpdateCarrito")
-public class UpdateCarrito extends HttpServlet {
+@WebServlet("/EliminarJuegoCarrito")
+public class EliminarJuegoCarrito extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -39,42 +39,22 @@ public class UpdateCarrito extends HttpServlet {
 	private void procesar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession misesion = request.getSession();
+		
 		CarritoDTO cart = (CarritoDTO) misesion.getAttribute("carrito");
 		String codigoCarrito = cart.getCodigoCarrito();
+		String codigoJuego = request.getParameter("codjuego");
 		
 		DetalleCarritoService servicio = new DetalleCarritoService();
-		ArrayList<DetalleCarritoDTO> listaDetCarrito = servicio.listarDetallePorUsuario(cart.getCodigoCarrito());
+		int rs = servicio.eliminarItemCarrito(codigoCarrito, codigoJuego);
 		
-		//datos de los input de cantidad
-		String[] cantidades = request.getParameterValues("txtCantidad");
-		
-//		for(int i = 0, length = cantidades.length; i < length; i++){
-//			if(cantidades[i] == "0"){
-//				return;
-//			}
-//		}
-		
-		boolean flag = true;
-		
-		for(int i = 0, size = listaDetCarrito.size(); i < size; i++){
-			DetalleCarritoDTO d = listaDetCarrito.get(i);
-			int rs = 0;
-			rs = servicio.actulizarDetalleCompra(codigoCarrito, d.getCodigoJuego(), Integer.parseInt(cantidades[i]));
-			
-			if(rs == 0){
-				flag = false;
-				break;
-			}
+		if(rs != 0){
+			request.setAttribute("mensaje", "Juego eliminado");
+		} else {
+			request.setAttribute("mensaje", "Error al eliminar juego");
 		}
 		
-		if(flag){
-			request.setAttribute("mensaje", "Actualizacion completa");
-			ArrayList<DetalleCarritoDTO> listaCarrito = servicio.listarDetallePorUsuario(cart.getCodigoCarrito());
-			request.getSession().setAttribute("listaCarrito", listaCarrito);
-		} else{
-			request.setAttribute("mensaje", "Error al actualizar");
-		}
-		
+		ArrayList<DetalleCarritoDTO> listaCarrito = servicio.listarDetallePorUsuario(cart.getCodigoCarrito());
+		misesion.setAttribute("listaCarrito", listaCarrito);
 		request.getRequestDispatcher("/Carrito.jsp").forward(request, response);
 	}
 

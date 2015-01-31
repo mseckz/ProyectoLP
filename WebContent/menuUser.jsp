@@ -62,10 +62,10 @@
               	</ul>
             </li>
             <li role="menu">
-            	<button>Carrito<i class="icon-shopping-cart"></i></button>
+            	<button>Carrito<i class="icon-shopping-cart"></i><span class="badge"><c:out value='${sessionScope.listaCarrito.size()}'></c:out></span></button>
             	<ul>
             		<c:forEach var="det" items="${sessionScope.listaCarrito}">
-                  		<li><a><c:out value='${det.get("nombreJuego")}'></c:out></a></li>
+                  		<li><a><c:out value='${det.juego.getNombre()}'></c:out></a></li>
                   	</c:forEach>
             		<li><a href="Carrito.jsp">Ir a carrito</a></li>
             	</ul>

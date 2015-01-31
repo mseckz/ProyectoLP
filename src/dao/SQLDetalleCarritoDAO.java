@@ -79,30 +79,25 @@ public class SQLDetalleCarritoDAO implements DetalleCarritoDAO {
 		return lista;
 	}
 	
-	
-	public ArrayList<HashMap<String, Object>> listadoPorUsuario(String codigoUsuario){
+	@Override
+	public ArrayList<DetalleCarritoDTO> listarDetallePorUsuario(String codigoCarrito) {
 		
-		ArrayList<HashMap<String, Object>> listaDetCarrito = new ArrayList<HashMap<String, Object>>();
-	
+		ArrayList<DetalleCarritoDTO> listaDetCarrito = new ArrayList<DetalleCarritoDTO>();
+		
 		Connection con = null;
 		PreparedStatement pst = null;
 		ResultSet rs = null;
 		
 		try {
 			con = SQLServerConexion.getConexion();
-			String sql = "exec USP_LISTAR_CARRITO_USUARIO ?";
+			String sql = "SELECT * FROM DETALLECARRITO WHERE CODIGOCARRITO = ?";
 			pst = con.prepareStatement(sql);
-			pst.setString(1, codigoUsuario);
+			pst.setString(1, codigoCarrito);
 			rs = pst.executeQuery();
 			
 			while(rs.next()){
-				HashMap<String, Object> detalle = new HashMap<String, Object>();
-				detalle.put("nombreJuego", rs.getString(1));
-				detalle.put("categoria", rs.getString(2));
-				detalle.put("costo", rs.getDouble(3));
-				detalle.put("cantidad", rs.getInt(4));
-		
-				listaDetCarrito.add(detalle);
+				DetalleCarritoDTO d = new DetalleCarritoDTO(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getString(5));
+				listaDetCarrito.add(d);
 			}
 			
 		} catch (SQLException e) {
@@ -117,7 +112,63 @@ public class SQLDetalleCarritoDAO implements DetalleCarritoDAO {
 			}		
 		}
 		
-		return listaDetCarrito;	
+		return listaDetCarrito;
+	}
+
+	@Override
+	public int actulizarDetalleCompra(String codigoCarrito, String codigoJuego, int cantidad) {
+		
+		Connection con = null;
+		PreparedStatement pst = null;
+		int rs = 0;
+		
+		try {
+			con = SQLServerConexion.getConexion();
+			String sql = "UPDATE DETALLECARRITO SET CANTIDAD = ? WHERE CODIGOCARRITO = ? AND CODIGOJUEGO = ?";
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, cantidad);
+			pst.setString(2, codigoCarrito);
+			pst.setString(3, codigoJuego);
+			rs = pst.executeUpdate();			
+			
+		} catch (Exception e) {
+			System.out.println("Error al insertar juego en detalle");
+		} finally{
+			try {
+				if(pst != null) pst.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				System.out.println("Error al cerrar desde el servlet");
+			}
+		}
+		return rs;
+	}
+	
+	public int eliminarItemCarrito(String codCarrito, String codJuego){
+		
+		int rs = 0;
+		Connection con = null;
+		PreparedStatement pst = null;
+		
+		try {
+			con = SQLServerConexion.getConexion();
+			String sql = "DELETE FROM DETALLECARRITO WHERE CODIGOCARRITO = ? AND CODIGOJUEGO = ?";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, codCarrito);
+			pst.setString(2, codJuego);
+			rs = pst.executeUpdate();		
+			
+		} catch (Exception e) {
+			System.out.println("Error al eliminar juego en detalle");
+		} finally{
+			try {
+				if(pst != null) pst.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				System.out.println("Error al cerrar desde el servlet");
+			}
+		}
+		return rs;
 	}
 
 }

@@ -14,18 +14,14 @@ public class UsuarioService {
 	
 	
 	public ArrayList<UsuarioDTO> listarUsuarios() {
-		// TODO Auto-generated method stub
 		return objUsuarioDAO.listarUsuarios();
 	}
 
-
 	public ArrayList<UsuarioDTO> listarUsuarios(String nombre) {
-		// TODO Auto-generated method stub
 		return objUsuarioDAO.listarUsuarios(nombre);
 	}
 
 	public int modificaUsuario(String codigo, String status) {
-		// TODO Auto-generated method stub
 		return objUsuarioDAO.modificaUsuario(codigo,status);
 	}
 	
@@ -33,10 +29,16 @@ public class UsuarioService {
 		return objUsuarioDAO.registrarUsuario(usuario, clave, nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento,correo);
 	}
 
-
 	public UsuarioDTO validaUsuario(String nombre, String password) {
-		// TODO Auto-generated method stub
 		return objUsuarioDAO.validaUsuario(nombre,password);
+	}
+	
+	public int cambioPassword (String codigoUsuario , String clave){
+		return objUsuarioDAO.cambioPassword(codigoUsuario, clave);
+	}
+	
+	public int modificarInfoUsuario(String codigoUsuario,String nombre,String apellidoPaterno,String apellidoMaterno,String correo){
+		return objUsuarioDAO.modificarInfoUsuario(codigoUsuario, nombre, apellidoPaterno, apellidoMaterno, correo);
 	}
 
 }

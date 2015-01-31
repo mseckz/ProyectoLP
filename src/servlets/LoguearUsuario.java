@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.AdministradorDTO;
+import beans.CarritoDTO;
 import beans.DetalleCarritoDTO;
 import beans.UsuarioDTO;
 import service.AdministradorService;
@@ -126,12 +127,16 @@ public class LoguearUsuario extends HttpServlet {
 							+ " " + validado.getApellidoPaterno());
 					misesion.setAttribute("datosUser", "usuario");
 					
-					// enviar usuario
+					// atributos de sesion: usuario y carrito
+					CarritoService servCarr = new CarritoService();
+					CarritoDTO carrito = servCarr.buscarCarrito(validado.getCodigoUsuario());
+					
 					misesion.setAttribute("usuariodto", validado);
+					misesion.setAttribute("carrito", carrito);
 					
 					// Listamos los juegos que tiene el usuario en el carrito
 					DetalleCarritoService servDetalleCarr = new DetalleCarritoService();
-					ArrayList<HashMap<String, Object>> listaCarrito = servDetalleCarr.listadoPorUsuario(validado.getCodigoUsuario());
+					ArrayList<DetalleCarritoDTO> listaCarrito = servDetalleCarr.listarDetallePorUsuario(carrito.getCodigoCarrito());
 					misesion.setAttribute("listaCarrito", listaCarrito);
 				}
 				else {

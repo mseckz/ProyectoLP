@@ -20,8 +20,15 @@ public class DetalleCarritoService {
 		return objDetalle.listadoJuegosCarrito();
 	}
 	
-	public ArrayList<HashMap<String, Object>> listadoPorUsuario(String codigoUsuario){
-		return objDetalle.listadoPorUsuario(codigoUsuario);
+	public ArrayList<DetalleCarritoDTO> listarDetallePorUsuario(String codigoCarrito){
+		return objDetalle.listarDetallePorUsuario(codigoCarrito);
 	}
 	
+	public int actulizarDetalleCompra(String codigoCarrito, String codigoJuego, int cantidad){
+		return objDetalle.actulizarDetalleCompra(codigoCarrito, codigoJuego, cantidad);
+	}
+	
+	public int eliminarItemCarrito(String codCarrito, String codJuego){
+		return objDetalle.eliminarItemCarrito(codCarrito, codJuego);
+	}
 }

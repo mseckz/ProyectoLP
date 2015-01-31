@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.CarritoDTO;
 import beans.DetalleCarritoDTO;
 import beans.JuegoDTO;
 import beans.UsuarioDTO;
@@ -53,25 +54,25 @@ public class AgregarJuegoCarrito extends HttpServlet {
 			request.getRequestDispatcher("/games.jsp").forward(request, response);
 		}
 		else{
-			CarritoService servicioCarr = new CarritoService();
-			String codigoCarrito = servicioCarr.buscarCarrito(usu.getCodigoUsuario()).getCodigoCarrito();
+			CarritoDTO cart = (CarritoDTO) request.getSession().getAttribute("carrito");
+			
 			int cantidad = 1;  // siempre empieza con cantidad de 1, el usuario podra actualiza en el carrito
 			double costo = Double.parseDouble(request.getParameter("costo"));
 			String estado = "En proceso";
 			
 			DetalleCarritoService servicio = new DetalleCarritoService();
-			int rs = servicio.agregarJuego(codigoCarrito, codigoJuego, cantidad, costo, estado);
+			int rs = servicio.agregarJuego(cart.getCodigoCarrito(), codigoJuego, cantidad, costo, estado);
 			
 			if(rs == 0){
 				request.setAttribute("Error", "Error al agregar item");
 			}
 			else{
 				request.setAttribute("confirmacion", nombreJuego + " fue añadido al carrito de compras");
-				ArrayList<HashMap<String, Object>> listaCarrito = servicio.listadoPorUsuario(usu.getCodigoUsuario());
+				ArrayList<DetalleCarritoDTO> listaCarrito = servicio.listarDetallePorUsuario(cart.getCodigoCarrito());
 				request.getSession().setAttribute("listaCarrito", listaCarrito);
 			}
 			
-			request.getRequestDispatcher("/carrito.jsp").forward(request, response);
+			request.getRequestDispatcher("/Carrito.jsp").forward(request, response);
 		}	
 	}
 }

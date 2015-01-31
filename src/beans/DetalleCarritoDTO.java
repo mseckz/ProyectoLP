@@ -1,5 +1,7 @@
 package beans;
 
+import service.JuegoService;
+
 public class DetalleCarritoDTO {
 	
 	public String codigoCarrito;
@@ -7,6 +9,8 @@ public class DetalleCarritoDTO {
 	public int cantidad;
 	public double costo;
 	public String estado;
+	public double subtotal;
+	public JuegoDTO juego;
 	
 	public DetalleCarritoDTO(String codigoCarrito, String codigoJuego,
 			int cantidad, double costo, String estado) {
@@ -56,5 +60,14 @@ public class DetalleCarritoDTO {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
+	}
+	
+	public double getSubtotal(){
+		return cantidad*costo;
+	}
+	
+	public JuegoDTO getJuego(){
+		JuegoService servicio = new JuegoService();
+		return servicio.buscarJuego(codigoJuego);
 	}
 }

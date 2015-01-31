@@ -11,5 +11,10 @@ public interface DetalleCarritoDAO {
 	
 	public ArrayList<DetalleCarritoDTO> listadoJuegosCarrito();
 	
-	public ArrayList<HashMap<String, Object>> listadoPorUsuario(String codigoUsuario);
+	public ArrayList<DetalleCarritoDTO> listarDetallePorUsuario(String codigocarrito);
+	
+	//actualizar carrito de compra
+	public int actulizarDetalleCompra(String codigoCarrito, String codigoJuego, int cantidad);
+	
+	public int eliminarItemCarrito(String codCarrito, String codJuego);
 }
