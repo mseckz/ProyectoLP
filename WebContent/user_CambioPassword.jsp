@@ -68,23 +68,4 @@
 
 	<c:import url="footer.jsp" />
 </body>
-<script type="text/javascript">
-    	$(document).ready(function(){
-    		
-    		$('#formpassword').submit(function(){
-    			
-    			var password = $('#txtPassword');
-    			var passwordConfirm = $('#txtPasswordConfirmar');
-    			
-    			if(password != passwordConfirm){
-    				$('#mensaje').text("Claves deben coincidir");
-    				return false;
-    			}
-    			
-    			return true;
-    			
-    		});
-    		
-    	});
-</script>
 </html>

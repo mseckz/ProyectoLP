@@ -76,6 +76,10 @@
 										<option value="inactivo" ${param.estado == 'inactivo' ? 'selected="selected"' : ''}>Inactivo</option>
 								</select></span>
 							</div>
+							<div class="one half padded">
+								<label for="name">Imagen</label> 
+								<input id="name" name="imagen" type="file" >
+							</div>
 						</div>
 					</div>
 					<div class="row">

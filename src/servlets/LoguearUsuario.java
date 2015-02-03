@@ -107,7 +107,7 @@ public class LoguearUsuario extends HttpServlet {
 
 			UsuarioService servicio = new UsuarioService();
 			UsuarioDTO validado = servicio.validaUsuario(nombre, password);
-			System.out.println(validado.getCorreo());
+		
 			String estado = "";
 			
 			if (validado != null) {

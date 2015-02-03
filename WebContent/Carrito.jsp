@@ -39,6 +39,9 @@
     				<div>
     					<p>No hay items en el Carrito</p>
     				</div>
+    				<div class="col-md-6">
+						<br><a href="ListadoJuegos">Seguir comprando</a>
+					</div>
     			</c:when>
     			<c:otherwise>
     			<form action="UpdateCarrito" method="post">
