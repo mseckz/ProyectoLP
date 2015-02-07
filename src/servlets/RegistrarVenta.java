@@ -101,7 +101,7 @@ public class RegistrarVenta extends HttpServlet {
 		request.getSession().setAttribute("listaCarrito", listaCarrito);
 		
 		request.setAttribute("confirmacion", "Compra realizada con exito!");
-		request.getRequestDispatcher("/user_Libreria.jsp").forward(request, response);
+		request.getRequestDispatcher("/LibreriaUsuario").forward(request, response);
 	}
 	
 	

@@ -10,10 +10,10 @@
             	<button  onclick = "location='ListadoJuegos'">BUSCAR JUEGOS</button>
                <ul>
                   <li>
-                     <button title="Navigation, buttons, boxes, message boxes, tables, tabs, and forms" onclick = "location='ListadoJuegos'">Todos los juegos</button></a>
+                     <button title="Todos los Juegos" onclick = "location='ListadoJuegos'">Todos los juegos</button></a>
                   </li>
                   <li role="menu">
-                    <button title="Navigation, buttons, boxes, message boxes, tables, tabs, and forms">Por Categorias</button>
+                    <button title="Por Categorias">Por Categorías</button>
                     <ul>
                      <c:forEach var="cat" items="${sessionScope.listaCategorias}">
                   		<li>
@@ -29,12 +29,11 @@
       		<li role="menu">
             	<button>Sobre Nosotros</button>
               	<ul>
-                	<li><a href="./grid.html" title="Responsive grid system, grid adapters and helpers">Historia</a></li>
-                	<li><a href="./helpers.html" title="Layout helpers, spinners and much more">Mision</a></li>
-                	<li><a href="./typography.html" title="Text elements, quotes, code and web fonts">Vision</a></li>
-                	<li><a href="./icons.html" title="Icons">Unetenos</a></li>
-                	<li><a href="./responsive-text.html" title="Responsive text and multi-line text block truncation">Socios Estrategicos</a></li>
-                	<li><a href="./placeholder-text.html" title="Placeholder text and placeholder fonts for rapid prototyping and wireframes">Eventos</a></li>
+                	<li><a href="historia.jsp" title="Historia">Historia</a></li>
+                	<li><a href="misionVision.jsp" title="Misión">Misión y Visión</a></li>
+                	<li><a href="./icons.html" title="Únetenos">Únetenos</a></li>
+                	<li><a href="./responsive-text.html" title="Socios Estratégicos">Socios Estratégicos</a></li>
+                	<li><a href="./placeholder-text.html" title="Eventos">Eventos</a></li>
               	</ul>
             </li>
             <li class="pull-right"><a href="register.jsp">Registrarse</a></li>

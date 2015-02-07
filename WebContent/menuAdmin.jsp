@@ -25,6 +25,12 @@
                 	<li><a href="./placeholder-text.html" title="Placeholder text and placeholder fonts for rapid prototyping and wireframes">Eventos</a></li>
               	</ul>
             </li>
+            <li>
+            	<button>Reportes</button>
+            	<ul>
+            		<li><a href="#">Reporte 1</a></li>
+            	</ul>
+            </li>
        		<input id="search-box" name="q" onblur="if (this.value == &quot;&quot;) this.value = &quot;Buscar...&quot;;" onfocus="if (this.value == &quot;Buscar...&quot;) this.value = &quot;&quot;;" size="5" type="text" value="Buscar...">
         </ul>
     </nav>

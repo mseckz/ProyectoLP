@@ -9,11 +9,10 @@
             <div class="one small-tablet fourth padded">
               <h5 class="green">Sobre Nosotros</h5>
               <ul class="unstyled">
-                <li><a href="./layout-a.html">Historia</a></li>
-                <li><a href="./layout-b.html">Mision</a></li>
-                <li><a href="./layout-c.html">Vision</a></li>
-                <li><a href="./layout-d.html">Unetenos</a></li>
-                <li><a href="./layout-d.html">Socios Estrategicos</a></li>
+                <li><a href="historia.jsp">Historia</a></li>
+                <li><a href="misionVision.jsp">Misión y Visión</a></li>
+                <li><a href="./layout-d.html">Únetenos</a></li>
+                <li><a href="./layout-d.html">Socios Estratégicos</a></li>
                 <li><a href="./layout-d.html">Eventos</a></li>
               </ul>
             </div>

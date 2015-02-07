@@ -47,9 +47,8 @@ public class SQLDetalleVentaDAO implements DetalleVentaDAO {
 	}
 
 	@Override
-	public ArrayList<DetalleVentaDTO> listarJuegosAdquiridos(String codigousuario) {
-
-
+	public ArrayList<DetalleVentaDTO> licenciasJuegoPorUsuario(String codigousuario, String codigojuego) {
+		
 		ArrayList<DetalleVentaDTO> lista = new ArrayList<DetalleVentaDTO>();
 		
 		Connection con = null;
@@ -58,17 +57,21 @@ public class SQLDetalleVentaDAO implements DetalleVentaDAO {
 		
 		try {
 			con = SQLServerConexion.getConexion();
-			String sql = "SELECT * FROM JUEGO order by FECHAINGRESO";
+			String sql = "select dv.* from DETALLEVENTA dv inner join venta v on dv.CODIGOVENTA = v.CODIGOVENTA " +
+						"inner join USUARIO u on v.CODIGOUSUA = u.CODIGOUSUARIO where v.CODIGOUSUA = ? and dv.CODIGOJUEGO = ?";
 			pst = con.prepareStatement(sql);
+			pst.setString(1, codigousuario);
+			pst.setString(2, codigojuego);
 			rs = pst.executeQuery();
 			
 			while(rs.next()){
-//				DetalleVentaDTO dv = new DetalleVentaDTO(codigoventa, codigojuego, codigoserial, numserial, costo, estado)
-//				lista.add(dv);
+				DetalleVentaDTO dv = new DetalleVentaDTO(rs.getString(1), rs.getString(2), rs.getString(3), 
+														rs.getString(4), rs.getDouble(5), rs.getString(6));
+				lista.add(dv);
 			}
 			
 		} catch (SQLException e) {
-			System.out.println("Error al listar juegos adquiridos");
+			System.out.println("Error al lista juegos y licencias adquiridas");
 		} finally {
 			try {
 				if(rs != null) rs.close();
@@ -78,7 +81,6 @@ public class SQLDetalleVentaDAO implements DetalleVentaDAO {
 				System.out.println("Error al cerrar desde el servlet");
 			}		
 		}
-		
 		return lista;
 	}
 

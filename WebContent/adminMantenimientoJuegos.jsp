@@ -27,7 +27,7 @@
 			</div>
 		</div>
 		<hr>
-		<form action="BuscarModificarJuego" method="get">
+		<form action="BuscarModificarJuego" method="get" enctype="multipart/form-data">
 			<div class="row">
 				<div class="one whole padded">
 					<div class="bounceInLeft animated">
@@ -78,7 +78,7 @@
 							</div>
 							<div class="one half padded">
 								<label for="name">Imagen</label> 
-								<input id="name" name="imagen" type="file" >
+								<input id="name" name="file" type="file" >
 							</div>
 						</div>
 					</div>

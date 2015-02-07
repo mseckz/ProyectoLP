@@ -218,5 +218,40 @@ public class SQLJuegoDAO implements JuegoDAO {
 		}	
 		return juegos;
 	}
+
+	@Override
+	public ArrayList<JuegoDTO> juegosAdquiridosUsuario(String codigousuario) {
+		
+		ArrayList<JuegoDTO> juegos = new ArrayList<JuegoDTO>();
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		
+		try {
+			con = SQLServerConexion.getConexion();
+			String sql = "exec usp_juegos_adquiridos_usuario ?";
+			pst = con.prepareStatement(sql);
+			pst.setString(1, codigousuario);
+			rs = pst.executeQuery();
+			
+			while(rs.next()){
+				JuegoDTO juego = new JuegoDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getInt(5), 
+						 		          rs.getInt(6), rs.getString(7), rs.getString(8), rs.getString(9));
+				juegos.add(juego);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Error al buscar juego POR usuario");
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pst != null) pst.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				System.out.println("Error al cerrar desde el servlet");
+			}		
+		}	
+		return juegos;
+	}
 	
 }

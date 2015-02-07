@@ -104,7 +104,7 @@
 			</ul>
 		</nav>
         </aside>
-        <article class="four fifths" style="padding-left: 20px;">
+        <article class="four fifths" style="padding-left: 10px;">
           <div class="row">
           <c:forEach var="juego" items="${juegos}" >
           	<div class="one fourth three-up-small-tablet two-up-mobile padded bounceInDown animated">

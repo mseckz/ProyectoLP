@@ -34,4 +34,8 @@ public class JuegoService {
 	public ArrayList<JuegoDTO> listarJuegoxCategoria(int categoria){
 		return objJuego.listarJuegoxCategoria(categoria);
 	}
+
+	public ArrayList<JuegoDTO> juegosAdquiridosUsuario(String codigousuario){
+		return objJuego.juegosAdquiridosUsuario(codigousuario);
+	}
 }

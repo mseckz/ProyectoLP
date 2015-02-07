@@ -30,7 +30,7 @@
             <ul>
                <li><a href="user_Cuenta.jsp" title="Navigation">Cuenta</a></li>
                <li><a href="user_Ordenes.jsp" title="Navigation">Ordenes</a></li>
-               <li><a href="user_Libreria.jsp" title="Buttons, button groups, button menus">Libreria</a></li>
+               <li><a href="LibreriaUsuario" title="Buttons, button groups, button menus">Libreria</a></li>
             </ul>
          </li>
          <li role="menu">

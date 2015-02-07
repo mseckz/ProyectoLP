@@ -10,6 +10,6 @@ public interface DetalleVentaDAO {
 	public int registrarDetalleVenta(String codigoventa, String codigojuego, String codigoserial,
 									String numserial, double costo, String estado);
 	
-	public ArrayList<DetalleVentaDTO> listarJuegosAdquiridos(String codigousuario);
+	public ArrayList<DetalleVentaDTO> licenciasJuegoPorUsuario(String codigousuario, String codigojuego);
 
 }

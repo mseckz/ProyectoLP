@@ -6,11 +6,11 @@ public class DetalleVentaDTO {
 	private String codigojuego;
 	private String codigoserial;
 	private String numserial;
-	private String costo;
+	private double costo;
 	private String estado;
 	
 	public DetalleVentaDTO(String codigoventa, String codigojuego,
-			String codigoserial, String numserial, String costo, String estado) {
+			String codigoserial, String numserial, double costo, String estado) {
 		super();
 		this.codigoventa = codigoventa;
 		this.codigojuego = codigojuego;
@@ -52,11 +52,11 @@ public class DetalleVentaDTO {
 		this.numserial = numserial;
 	}
 
-	public String getCosto() {
+	public double getCosto() {
 		return costo;
 	}
 
-	public void setCosto(String costo) {
+	public void setCosto(double costo) {
 		this.costo = costo;
 	}
 
