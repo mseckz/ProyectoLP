@@ -11,9 +11,9 @@
               <ul class="unstyled">
                 <li><a href="historia.jsp">Historia</a></li>
                 <li><a href="misionVision.jsp">Misión y Visión</a></li>
-                <li><a href="./layout-d.html">Únetenos</a></li>
-                <li><a href="./layout-d.html">Socios Estratégicos</a></li>
-                <li><a href="./layout-d.html">Eventos</a></li>
+                <li><a href="unetenos.jsp">Únetenos</a></li>
+                <li><a href="EnConstruccion.jsp">Socios Estratégicos</a></li>
+                <li><a href="EnConstruccion.jsp">Eventos</a></li>
               </ul>
             </div>
             <div class="two small-tablet fourths padded">

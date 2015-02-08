@@ -19,9 +19,11 @@
 				<th>Item</th><th>Licencia</th>
 			</tr>
 		</thead>
-		<c:forEach var="juego" items="${requestScope.listaxjuego}" varStatus="indice">
+		<c:set var="count" value="0" scope="page" />
+		<c:forEach var="juego" items="${requestScope.listaxjuego}">
 			<tr>
-				<td><c:out value="${indice}"></c:out></td>
+				<c:set var="count" value="${count + 1}" scope="page"/>
+				<td><c:out value="${count}"></c:out></td>
 				<td><c:out value="${juego.numserial}"></c:out></td>
 			</tr>
 		</c:forEach>

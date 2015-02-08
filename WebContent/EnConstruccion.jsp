@@ -11,13 +11,14 @@
 	<c:import url="header.jsp" />
 </header>
 <div class="container">
-    <div class="padded">
-        <div class="row">
-        	
-        </div>
-    </div>
-</div>
+<div class="pad-top pad-left pad-right bounceInRight animated"></div>
 
+<div><img src="images/SITIO-EN-CONSTRUCCION.jpg" alt=""></div>
+
+<script src="js/jquery-1.11.1.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</div>
+<hr>
 <c:import url="footer.jsp" />
 </body>
 </html>

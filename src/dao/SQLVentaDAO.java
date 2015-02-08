@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import beans.VentaDTO;
 import utils.SQLServerConexion;
 import interfaces.VentaDAO;
 
@@ -76,6 +78,43 @@ public class SQLVentaDAO implements VentaDAO {
 		}
 		
 		return codigo;
+	}
+
+	@Override
+	public ArrayList<VentaDTO> listarOrdenesUsuario(String codigousuario) {
+		
+		ArrayList<VentaDTO> lista = new ArrayList<VentaDTO>();
+
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			con = SQLServerConexion.getConexion();
+			String sql = "SELECT * FROM VENTA WHERE CODIGOUSUA = ?";
+			pst = con.prepareStatement(sql);
+			rs = pst.executeQuery();
+			
+			while(rs.next()){
+				VentaDTO v = new VentaDTO(rs.getString(1), rs.getString(2), rs.getString(3), 
+						rs.getString(4), rs.getDouble(5), rs.getDouble(6), rs.getDouble(7), rs.getString(8));
+				lista.add(v);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Error al listar ordenes de usuario");
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pst != null) pst.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				System.out.println("Error al cerrar desde el servlet");
+			}
+		}
+		
+		return lista;
 	}
 	
 	

@@ -31,9 +31,9 @@
               	<ul>
                 	<li><a href="historia.jsp" title="Historia">Historia</a></li>
                 	<li><a href="misionVision.jsp" title="Misión">Misión y Visión</a></li>
-                	<li><a href="./icons.html" title="Únetenos">Únetenos</a></li>
-                	<li><a href="./responsive-text.html" title="Socios Estratégicos">Socios Estratégicos</a></li>
-                	<li><a href="./placeholder-text.html" title="Eventos">Eventos</a></li>
+                	<li><a href="unetenos.jsp" title="Únetenos">Únetenos</a></li>
+                	<li><a href="EnConstruccion.jsp" title="Socios Estratégicos">Socios Estratégicos</a></li>
+                	<li><a href="EnConstruccion.jsp" title="Eventos">Eventos</a></li>
               	</ul>
             </li>
             <li class="pull-right"><a href="register.jsp">Registrarse</a></li>
