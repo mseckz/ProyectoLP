@@ -110,7 +110,7 @@
           	<div class="one fourth three-up-small-tablet two-up-mobile padded bounceInDown animated">
               <div class="box">
                 <h4 data-compression="7" data-max="20" class="responsive align-center zero"><c:out value="${juego.nombre}" ></c:out></h4>
-                <img src="images/bsellers/<c:out value='${juego.codigojuego}'></c:out>.jpg">
+                <img class="imggames" src="images/bsellers/<c:out value='${juego.codigojuego}'></c:out>.jpg">
                 <div id="datosjuego">
                 	<p class="truncate"><c:out value="${juego.descripcion}"></c:out></p>
                 	<p>$<c:out value="${juego.costo}"></c:out> USD</p>

@@ -94,6 +94,7 @@ public class SQLVentaDAO implements VentaDAO {
 			con = SQLServerConexion.getConexion();
 			String sql = "SELECT * FROM VENTA WHERE CODIGOUSUA = ?";
 			pst = con.prepareStatement(sql);
+			pst.setString(1, codigousuario);
 			rs = pst.executeQuery();
 			
 			while(rs.next()){

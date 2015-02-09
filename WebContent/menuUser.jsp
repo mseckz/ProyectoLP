@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
    pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <header class="padded">
    <div class="container">
       <nav role="navigation" class="nav gap-top">
@@ -29,13 +30,15 @@
             <button  title = "Mantenimientos">Mi Cuenta</button>
             <ul>
                <li><a href="user_Cuenta.jsp" title="Navigation">Cuenta</a></li>
-               <li><a href="user_Ordenes.jsp" title="Navigation">Ordenes</a></li>
+               <li><a href="ListarOrdenes" title="Navigation">Ordenes</a></li>
                <li><a href="LibreriaUsuario" title="Buttons, button groups, button menus">Libreria</a></li>
             </ul>
          </li>
          <li role="menu">
-            <button>Carrito<i class="icon-shopping-cart"></i></button>
-            <ul>
+            <button>Carrito<i class="icon-shopping-cart"></i><span class="badge">
+            <c:out value="${sessionScope.listaCarrito.size()}"></c:out>
+            </span></button>
+            <ul class="itemscarrito">
                <c:forEach var="det" items="${sessionScope.listaCarrito}">
                   <li>
                      <a>

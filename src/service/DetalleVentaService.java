@@ -20,5 +20,8 @@ public class DetalleVentaService {
 	public ArrayList<DetalleVentaDTO> licenciasJuegoPorUsuario(String codigousuario, String codigojuego){
 		return objDetalle.licenciasJuegoPorUsuario(codigousuario, codigojuego);
 	}
+	public ArrayList<DetalleVentaDTO> listarOrdenesxJuegos(String codigoventa){
+		return objDetalle.listarOrdenesxJuegos(codigoventa);
+	}
 
 }

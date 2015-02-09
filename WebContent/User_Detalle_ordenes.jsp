@@ -11,25 +11,24 @@
 	<c:import url="header.jsp" />
 </header>
 <div class="container">
-    <h2>Ordenes de Juegos</h2>
+    <h2>Detalle de Ordenes</h2>
     <hr>
 	<table>
 		<thead>
 			<tr>
-				<th>N° Venta</th><th>Codigo</th><th>Fecha Venta</th><th>Estado</th><th>Total</th><th>Estado</th><th>Ver Detalle</th>
+				<th>N° Licencia</th><th> </th><th>Codigo</th><th>Juego</th><th>Licencia</th><th>Costo</th>
 			</tr>
 		</thead>
 		<c:set var="count" value="0" scope="page" />
-		<c:forEach var="orden" items="${ordenes}">
+		<c:forEach var="deta" items="${ordenesdet}">
 			<tr>
 				<c:set var="count" value="${count + 1}" scope="page"/>
 				<td><c:out value="${count}"></c:out></td>
-				<td><c:out value="${orden.codigoventa}"></c:out></td>
-				<td><c:out value="${orden.fechaven}"></c:out></td>
-				<td><c:out value="${orden.igv}"></c:out></td>
-				<td><c:out value="${orden.total}"></c:out></td>
-				<td><c:out value="${orden.estado}"></c:out></td>
-				<td><a href="ListarDetalleOrdenes?codigoventa=${orden.codigoventa}" class="btn btn-primary">Ver Detalle</a></td>
+				<td><img class="imggameslitle" src="images/bsellers/<c:out value='${deta.codigojuego}'></c:out>.jpg"></td>
+				<td><c:out value="${deta.codigoventa}"></c:out></td>
+				<td><c:out value="${deta.juego.getNombre()}"></c:out></td>
+				<td><c:out value="${deta.numserial}"></c:out></td>
+				<td><c:out value="${deta.costo}"></c:out></td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -81,7 +81,7 @@ public class RegistrarVenta extends HttpServlet {
 		String codigoventa = servVenta.getCodigoUltimaVenta();
 			
 		DetalleVentaService servDetalle = new DetalleVentaService();
-			
+		
 		for(DetalleCarritoDTO dc : lista){
 				
 			ArrayList<SerialDTO> listaSerial = servSerial.getLicenciasCompra(dc.getCodigoJuego(), dc.getCantidad());

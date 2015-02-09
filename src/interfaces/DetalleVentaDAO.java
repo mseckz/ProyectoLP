@@ -12,4 +12,6 @@ public interface DetalleVentaDAO {
 	
 	public ArrayList<DetalleVentaDTO> licenciasJuegoPorUsuario(String codigousuario, String codigojuego);
 
+	public ArrayList<DetalleVentaDTO> listarOrdenesxJuegos(String codigoventa);
+
 }

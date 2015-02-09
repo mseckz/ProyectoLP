@@ -1,5 +1,8 @@
 package service;
 
+import java.util.ArrayList;
+
+import beans.VentaDTO;
 import interfaces.VentaDAO;
 import dao.DAOFactory;
 
@@ -16,5 +19,8 @@ public class VentaService {
 
 	public String getCodigoUltimaVenta(){
 		return objVenta.getCodigoUltimaVenta();
+	}
+	public ArrayList<VentaDTO> listarOrdenesUsuario(String codigousuario){
+		return objVenta.listarOrdenesUsuario(codigousuario);
 	}
 }
